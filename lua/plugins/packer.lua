@@ -4,8 +4,23 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
-  -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+  use 'ellisonleao/gruvbox.nvim'
+  use 'nvim-tree/nvim-tree.lua'
+  use 'nvim-tree/nvim-web-devicons'
+  use 'folke/tokyonight.nvim'
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
+  use 'nvim-treesitter/playground'
+  use { 'feline-nvim/feline.nvim', branch = '0.5-compat' }
+  use { 'catppuccin/nvim', as = 'catppuccin' }
+  use 'lewis6991/gitsigns.nvim'
+  use 'nvim-lua/plenary.nvim'
+  use 'simeji/winresizer'
+  use 'ThePrimeagen/harpoon'
+  -- use 'romgrk/barbar.nvim'
 
   use {
 	  'nvim-telescope/telescope.nvim', tag = '0.1.2',
@@ -13,15 +28,5 @@ return require('packer').startup(function(use)
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
-  use({
-    'rose-pine/neovim',
-    as = 'rose-pine',
-    config = function()
-      vim.cmd("colorscheme rose-pine")
-    end
-  })
-
-  use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
-  --use('nvim-treesitter/playground')
-  
+  use({ 'rose-pine/neovim', as = 'rose-pine' })
 end)
