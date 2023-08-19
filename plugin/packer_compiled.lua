@@ -99,6 +99,11 @@ _G.packer_plugins = {
     path = "C:\\Users\\jorgecelaya\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\harpoon",
     url = "https://github.com/ThePrimeagen/harpoon"
   },
+  ["nvim-comment"] = {
+    loaded = true,
+    path = "C:\\Users\\jorgecelaya\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-comment",
+    url = "https://github.com/terrortylor/nvim-comment"
+  },
   ["nvim-tree.lua"] = {
     loaded = true,
     path = "C:\\Users\\jorgecelaya\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-tree.lua",

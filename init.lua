@@ -1,8 +1,8 @@
 require("config")
+require("plugins")
 
 vim.cmd("set number")
 vim.cmd("set rnu")
-vim.keymap.set("n", "<A-BS>", "db")
 vim.cmd("noremap C-Bs> db")
 vim.cmd("noremap <C-del> dw")
 vim.cmd("noremap <BS> dh")
