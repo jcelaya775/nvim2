@@ -30,13 +30,13 @@ return require('packer').startup(function(use)
   use 'ThePrimeagen/harpoon'
   -- use 'romgrk/barbar.nvim'
   use 'terrortylor/nvim-comment'
-  
+
   use {
   	  'nvim-telescope/telescope.nvim', tag = '0.1.2',
   	  -- or                            , branch = '0.1.x',
   	  requires = { {'nvim-lua/plenary.nvim'} }
   }
-
+  
   use({ 'rose-pine/neovim', as = 'rose-pine' })
   -- Lua
   use {
