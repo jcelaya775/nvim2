@@ -6,7 +6,7 @@ vim.keymap.set("n","<C-n>", function()
 end)
 
 -- Highlight off
-vim.keymap.set("n", "<A-u>", "<Cmd>noh<CR>")
+vim.keymap.set("n", "<A-n>", "<Cmd>noh<CR>")
 
 -- Window switching
 vim.keymap.set("n", "<C-h>", "<C-w>h")
@@ -29,7 +29,6 @@ vim.keymap.set("n", "<C-a>", "ggVG")
 
 -- Undo
 -- vim.keymap.set("i", "", ":w<CR>")
-
 
 -- Quit all
 vim.keymap.set("n", "<A-q>", "<Cmd>qa!<CR>")

@@ -38,4 +38,10 @@ return require('packer').startup(function(use)
   }
 
   use({ 'rose-pine/neovim', as = 'rose-pine' })
+  -- Lua
+  use {
+    'abecodes/tabout.nvim',
+    wants = {'nvim-treesitter'}, -- or require if not used so far
+    -- after = {'nvim-cmp'} -- if a completion plugin is using tabs load it before
+  }
 end)
