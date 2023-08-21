@@ -31,7 +31,7 @@ vim.keymap.set("i", "", "<Cmd>w<CR>")
 vim.keymap.set("n", "<C-a>", "ggVG")
 
 -- Undo
--- vim.keymap.set("i", "", ":w<CR>")
+vim.keymap.set("i", "", vim.cmd.u)
 
 -- Quit all
 vim.keymap.set("n", "<A-q>", "<Cmd>qa!<CR>")

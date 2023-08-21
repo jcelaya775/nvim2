@@ -44,4 +44,11 @@ return require('packer').startup(function(use)
     wants = {'nvim-treesitter'}, -- or require if not used so far
     -- after = {'nvim-cmp'} -- if a completion plugin is using tabs load it before
   }
+  -- use {
+  --   'williamboman/mason.nvim',
+  --   'williamboman/mason-lspconfig.nvim',
+  --   'neovim/nvim-lspconfig',
+  --   'mhartington/formatter.nvim'
+  -- }
+  -- use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 end)
