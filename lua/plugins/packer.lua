@@ -24,7 +24,10 @@ return require('packer').startup(function(use)
   use 'nvim-treesitter/playground'
   use 'feline-nvim/feline.nvim'
   use { 'catppuccin/nvim', as = 'catppuccin' }
-  use 'lewis6991/gitsigns.nvim'
+  use({
+   'lewis6991/gitsigns.nvim',
+   requires = {'nvim-lua/plenary.nvim'},
+  })
   use 'nvim-lua/plenary.nvim'
   use 'simeji/winresizer'
   use 'ThePrimeagen/harpoon'
@@ -64,4 +67,12 @@ return require('packer').startup(function(use)
       {'dcampos/cmp-snippy'},
     }
   }
+  use 'windwp/nvim-autopairs'
+  use({
+    'L3MON4D3/LuaSnip',
+    tag = "v2.*",
+    run = "make install_jsregexp",
+  })
+  use 'lukas-reineke/indent-blankline.nvim'
+  use 'mhartington/formatter.nvim'
 end)

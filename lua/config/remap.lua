@@ -1,9 +1,5 @@
 vim.g.mapleader = " "
-vim.keymap.set("n","<C-n>", function()
-    vim.cmd("NvimTreeToggle")
-    vim.cmd("set nu")
-    vim.cmd("set rnu")
-end)
+vim.keymap.set("n","<C-n>", "<Cmd>NvimTreeToggle<CR>")
 
 -- Disable highlight
 vim.keymap.set("n", "<A-n>", "<Cmd>noh<CR>")
@@ -20,10 +16,11 @@ vim.keymap.set("n", "<C-j>", "<C-w>j")
 
 -- Backspace
 vim.keymap.set("n", "<A-BS>", "db")
-vim.keymap.set("i", "<A-BS>", "<C-w>")
-vim.keymap.set("i", "<C-BS>", "<C-w>")
 vim.keymap.set("n", "<C-Bs>", "db")
 vim.keymap.set("n", "<C-del>", "dw")
+vim.keymap.set("i", "<A-BS>", "<C-w>")
+vim.keymap.set("i", "<C-BS>", "<C-w>")
+vim.keymap.set("i", "<C-del>", "<Esc>ldwi")
 vim.keymap.set("n", "<BS>", "dh")
 
 -- Save
