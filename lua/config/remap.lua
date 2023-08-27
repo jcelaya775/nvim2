@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.keymap.set("n","<C-n>", "<Cmd>NvimTreeToggle<CR>")
+vim.keymap.set("n", "<C-n>", "<Cmd>NvimTreeToggle<CR>")
 
 -- Disable highlight
 vim.keymap.set("n", "<A-n>", "<Cmd>noh<CR>")
@@ -64,6 +64,9 @@ vim.keymap.set("i", "", vim.cmd.u)
 vim.keymap.set("n", "", vim.cmd.u)
 vim.keymap.set("v", "", vim.cmd.u)
 vim.keymap.set("x", "", vim.cmd.u)
+
+-- Quit
+vim.keymap.set("n", "<leader>q", "<Cmd>q!<CR>")
 
 -- Quit all
 vim.keymap.set("n", "<A-q>", "<Cmd>qa!<CR>")

@@ -28,6 +28,7 @@ return require('packer').startup(function(use)
    'lewis6991/gitsigns.nvim',
    requires = {'nvim-lua/plenary.nvim'},
   })
+  use 'tpope/vim-rhubarb'
   use 'nvim-lua/plenary.nvim'
   use 'simeji/winresizer'
   use 'ThePrimeagen/harpoon'
@@ -56,7 +57,7 @@ return require('packer').startup(function(use)
       {'neovim/nvim-lspconfig'},             -- Required
       {'williamboman/mason.nvim'},           -- Optional
       {'williamboman/mason-lspconfig.nvim'}, -- Optional
-  
+
       -- Autocompletion
       {'hrsh7th/nvim-cmp'},     -- Required
       {'hrsh7th/cmp-nvim-lsp'}, -- Required
@@ -65,14 +66,23 @@ return require('packer').startup(function(use)
       {'hrsh7th/cmp-cmdline'},
       {'dcampos/nvim-snippy'},
       {'dcampos/cmp-snippy'},
+      {"saadparwaiz1/cmp_luasnip"},
+			{"onsails/lspkind.nvim"},
     }
   }
   use 'windwp/nvim-autopairs'
+  use 'windwp/nvim-ts-autotag'
   use({
     'L3MON4D3/LuaSnip',
     tag = "v2.*",
     run = "make install_jsregexp",
   })
   use 'lukas-reineke/indent-blankline.nvim'
-  use 'mhartington/formatter.nvim'
+  use 'tpope/vim-surround'
+  use 'tpope/vim-repeat'
+  use 'jose-elias-alvarez/null-ls.nvim'
+  use 'brenoprata10/nvim-highlight-colors'
+  use "rafamadriz/friendly-snippets"
+  use 'panozzaj/vim-autocorrect'
+  use 'sbdchd/neoformat'
 end)

@@ -32,3 +32,5 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*" },
   command = [[%s/\s\+$//e]],
 })
+
+vim.cmd("setlocal spell spelllang=en_us")
