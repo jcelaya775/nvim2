@@ -1,3 +1,5 @@
+vim.cmd.QuickScopeToggle()
+
 vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
 
 vim.keymap.set("n", "<A-s>", "<Cmd>QuickScopeToggle<CR>")
