@@ -34,3 +34,12 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 })
 
 vim.cmd("setlocal spell spelllang=en_us")
+
+local notify = vim.notify
+vim.notify = function(msg, ...)
+    if msg:match("warning: multiple different client offset_encodings") then
+        return
+    end
+
+    notify(msg, ...)
+end

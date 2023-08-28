@@ -24,9 +24,9 @@ vim.keymap.set("i", "<C-del>", "<Esc>ldwi")
 vim.keymap.set("n", "<BS>", "dh")
 
 -- Save
-vim.keymap.set("n", "<C-s>", "<Cmd>w<CR>")
-vim.keymap.set("n", "<C-A-s>", "<Cmd>wa<CR>")
-vim.keymap.set("i", "", "<Cmd>w<CR>")
+vim.keymap.set("n", "<C-s>", "<Cmd>w!<CR>")
+vim.keymap.set("n", "<C-A-s>", "<Cmd>wa!<CR>")
+vim.keymap.set("i", "", "<Cmd>w!<CR>")
 
 -- Select all
 vim.keymap.set("n", "<C-a>", "ggVG")

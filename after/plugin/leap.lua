@@ -19,9 +19,9 @@ require("leap").add_default_mappings({
 
 vim.cmd.unmap("s")
 vim.cmd.unmap("S")
-vim.keymap.set("n", "<A-/>", function()
+vim.keymap.set("n", "<leader>s", function()
 	require("leap").leap({})
 end)
-vim.keymap.set("n", "<A-?>", function()
+vim.keymap.set("n", "<leader>S", function()
 	require("leap").leap({ backward = true })
 end)
