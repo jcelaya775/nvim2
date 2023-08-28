@@ -101,4 +101,5 @@ return require("packer").startup(function(use)
 		requires = "nvim-lua/plenary.nvim",
 	})
 	use("unblevable/quick-scope")
+	use("ggandor/leap.nvim")
 end)
