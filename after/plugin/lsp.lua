@@ -12,17 +12,58 @@ lsp.nvim_workspace()
 
 local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
+local copilot_suggestion = require("copilot.suggestion")
+local luasnip = require("luasnip")
+
 local cmp_mappings = lsp.defaults.cmp_mappings({
 	["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
 	["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-	["<Tab>"] = cmp.mapping.confirm({ select = true }),
+	["<Tab>"] = cmp.mapping(function(fallback)
+		if cmp.visible() then
+			cmp.confirm({ select = true })
+		elseif copilot_suggestion.is_visible() then
+			copilot_suggestion.accept()
+		elseif luasnip.in_snippet() then
+			luasnip.jump(1)
+		else
+			fallback()
+		end
+	end),
+	["<S-Tab>"] = cmp.mapping(function(fallback)
+		if luasnip.jumpable(-1) then
+			luasnip.jump(-1)
+		else
+			fallback()
+		end
+	end),
+	[""] = cmp.mapping(function(fallback)
+		if copilot_suggestion.is_visible() then
+			copilot_suggestion.accept_word()
+		else
+			fallback()
+		end
+	end),
+	["<A-l>"] = cmp.mapping(function(fallback)
+		if copilot_suggestion.is_visible() then
+			copilot_suggestion.accept_line()
+		else
+			fallback()
+		end
+	end),
 	["<Enter>"] = cmp.mapping.confirm({ select = true }),
 	["<C-Space>"] = cmp.mapping.complete(),
 	["<C-j>"] = cmp.mapping.complete(),
 	["<C-k>"] = cmp.mapping.close(),
 })
-cmp_mappings["<S-Tab>"] = nil
 cmp_mappings["<C-y>"] = nil
+
+function cmp_mappings:complete()
+	if copilot_suggestion.is_visible() then
+		copilot_suggestion.accept()
+	else
+		cmp.mapping.complete()
+	end
+end
 
 vim.keymap.set("n", "<leader>m", ":Mason<CR>")
 
@@ -60,7 +101,7 @@ lsp.on_attach(function(client, bufnr)
 		vim.lsp.buf.definition()
 	end, opts)
 	vim.keymap.set("n", "K", function()
-		vim.lsp.buf.hover() -- FIX: only run when hover is available
+		vim.lsp.buf.hover() -- TODO: only run when hover is available
 	end, opts)
 	vim.keymap.set("n", "<leader>ws", function()
 		vim.lsp.buf.workspace_symbol()
@@ -69,10 +110,10 @@ lsp.on_attach(function(client, bufnr)
 		vim.diagnostic.open_float()
 	end, opts)
 	vim.keymap.set("n", "[d", function()
-		vim.diagnostic.goto_next()
+		vim.diagnostic.goto_prev()
 	end, opts)
 	vim.keymap.set("n", "]d", function()
-		vim.diagnostic.goto_prev()
+		vim.diagnostic.goto_next()
 	end, opts)
 	vim.keymap.set("n", "<leader>ca", function()
 		vim.lsp.buf.code_action()

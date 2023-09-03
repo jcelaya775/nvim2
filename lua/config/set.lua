@@ -17,12 +17,12 @@ vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
--- vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
+-- Disable auto-ccommenting new lines
 vim.cmd([[
     autocmd FileType * set formatoptions-=cro
 ]])
@@ -44,6 +44,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 
 vim.cmd("setlocal spell spelllang=en_us")
 
+-- Handle format errors
 local notify = vim.notify
 vim.notify = function(msg, ...)
 	if msg:match("warning: multiple different client offset_encodings") then
@@ -54,12 +55,3 @@ vim.notify = function(msg, ...)
 end
 
 vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
-
--- local luasnip = require("luasnip")
--- vim.keymap.set({ "i", "s" }, "<Tab>", function()
--- 	if luasnip.expand_or_jumpable() then
--- 		luasnip.expand_or_jump()
--- 	else
--- 		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, true, true), "n", true)
--- 	end
--- end, { silent = true })

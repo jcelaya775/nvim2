@@ -1,9 +1,12 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<C-n>", "<Cmd>NvimTreeToggle<CR>")
+vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<CR>")
 
 -- Move
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- Stay in current position when joining lines
+vim.keymap.set("n", "J", "mzJ`z")
 
 -- Window switch
 vim.keymap.set("n", "<C-h>", "<C-w>h")
@@ -21,9 +24,9 @@ vim.keymap.set("i", "<C-del>", "<Esc>ldwi")
 vim.keymap.set("n", "<BS>", "dh")
 
 -- Save
-vim.keymap.set("n", "<C-s>", "<Cmd>w!<CR>")
-vim.keymap.set("n", "<C-A-s>", "<Cmd>wa!<CR>")
-vim.keymap.set("i", "", "<Cmd>w!<CR>")
+vim.keymap.set("n", "<C-s>", "<cmd>w!<CR>")
+vim.keymap.set("n", "<C-A-s>", "<cmd>wa!<CR>")
+vim.keymap.set("i", "", "<cmd>w!<CR>")
 
 -- Select all
 vim.keymap.set("n", "<C-a>", "ggVG")
@@ -48,12 +51,29 @@ vim.keymap.set("n", "'z", "'zzz")
 vim.keymap.set("n", "'x", "'xzz")
 vim.keymap.set("n", "'c", "'czz")
 vim.keymap.set("n", "'v", "'vzz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
+-- Paste without yanking
+vim.keymap.set("x", "<leader>p", '"_dP')
+
+-- Yank to system clipboard
+vim.keymap.set("n", "<leader>y", '"+y')
+vim.keymap.set("v", "<leader>y", '"+y')
+vim.keymap.set("x", "<leader>y", '"+y')
+
+-- Yank to clipboard
+vim.keymap.set("n", "<leader>y", '"+y')
 
 -- Escape
 vim.keymap.set("n", "<C-c>", "<Esc>")
 vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("v", "<C-c>", "<Esc>")
 vim.keymap.set("c", "<C-c>", "<Esc>")
+vim.keymap.set("s", "<C-c>", "<Esc>")
+
+-- ??
+vim.keymap.set("n", "Q", "<Nop>")
 
 -- Undo
 vim.keymap.set("i", "", vim.cmd.u)
@@ -62,8 +82,20 @@ vim.keymap.set("v", "", vim.cmd.u)
 vim.keymap.set("x", "", vim.cmd.u)
 
 -- Quit
-vim.keymap.set("n", "<leader>q", "<Cmd>q!<CR>")
+vim.keymap.set("n", "<leader>q", "<cmd>q!<CR>")
 
 -- Quit all
-vim.keymap.set("n", "<A-q>", "<Cmd>qa!<CR>")
-vim.keymap.set("n", "<A-w>", "<Cmd>wqa!<CR>")
+vim.keymap.set("n", "<A-q>", "<cmd>qa!<CR>")
+vim.keymap.set("n", "<A-w>", "<cmd>wqa!<CR>")
+
+-- Quickfix list
+vim.keymap.set("n", "<A-n>", "<cmd>cnext<CR>")
+vim.keymap.set("n", "<A-p>", "<cmd>cprev<CR>")
+vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>")
+vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>")
+
+-- Global search and replace
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- chmod +x this file
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })

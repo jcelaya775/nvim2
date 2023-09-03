@@ -24,7 +24,7 @@ require("copilot").setup({
 			accept_line = false,
 			next = "<A-n>",
 			prev = "<A-p>",
-			dismiss = "<C-n>",
+			dismiss = "<C-k>",
 		},
 	},
 	filetypes = {
@@ -43,3 +43,4 @@ require("copilot").setup({
 })
 
 vim.cmd("let g:copilot_no_tab_map = v:true")
+vim.cmd("imap <expr> <Plug>(vimrc:copilot-dummy-map) copilot#Accept('<Tab>')")
