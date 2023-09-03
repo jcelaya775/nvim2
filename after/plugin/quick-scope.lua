@@ -1,7 +1,5 @@
-vim.cmd.QuickScopeToggle()
+vim.g.qs_buftype_blacklist = { "terminal", "nofile", "help" }
 
-vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
-
-vim.keymap.set("n", "<A-s>", "<Cmd>QuickScopeToggle<CR>")
-vim.keymap.set("x", "<A-s>", "<Cmd>QuickScopeToggle<CR>")
-vim.keymap.set("v", "<A-s>", "<Cmd>QuickScopeToggle<CR>")
+vim.keymap.set("n", "<leader>s", "<Cmd>QuickScopeToggle<CR>")
+vim.keymap.set("x", "<leader>s", "<Cmd>QuickScopeToggle<CR>")
+vim.keymap.set("v", "<leader>s", "<Cmd>QuickScopeToggle<CR>")

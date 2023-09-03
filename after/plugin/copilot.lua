@@ -19,7 +19,7 @@ require("copilot").setup({
 		auto_trigger = true,
 		debounce = 75,
 		keymap = {
-			accept = "<C-k>",
+			accept = "<C-y>",
 			accept_word = false,
 			accept_line = false,
 			next = "<A-n>",
@@ -42,5 +42,4 @@ require("copilot").setup({
 	server_opts_overrides = {},
 })
 
-vim.cmd("imap <silent><script><expr> <C-e> copilot#Accept('<CR>')")
 vim.cmd("let g:copilot_no_tab_map = v:true")

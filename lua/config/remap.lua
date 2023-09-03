@@ -1,9 +1,6 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<C-n>", "<Cmd>NvimTreeToggle<CR>")
 
--- Disable highlight
-vim.keymap.set("n", "<A-n>", "<Cmd>noh<CR>")
-
 -- Move
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")

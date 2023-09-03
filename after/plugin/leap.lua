@@ -15,4 +15,7 @@ require("leap").add_default_mappings({
 		multi_accept = "<enter>",
 		multi_revert = "<backspace>",
 	},
+	modes = { "n" },
 })
+
+-- TODO: disable in visual/visual block mode

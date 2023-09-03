@@ -18,18 +18,38 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 	["<Tab>"] = cmp.mapping.confirm({ select = true }),
 	["<Enter>"] = cmp.mapping.confirm({ select = true }),
 	["<C-Space>"] = cmp.mapping.complete(),
+	["<C-j>"] = cmp.mapping.complete(),
+	["<C-k>"] = cmp.mapping.close(),
 })
+cmp_mappings["<S-Tab>"] = nil
+cmp_mappings["<C-y>"] = nil
 
--- cmp_mappings['<Tab>'] = nil
--- cmp_mappings['<S-Tab>'] = nil
+vim.keymap.set("n", "<leader>m", ":Mason<CR>")
 
 lsp.setup_nvim_cmp({
+	snippet = {
+		expand = function(args)
+			require("luasnip").lsp_expand(args.body)
+		end,
+	},
 	mapping = cmp_mappings,
 	sources = {
-		{ name = "luasnip", priority = 40 },
-		{ name = "nvim_lsp", priority = 30 },
-		{ name = "buffer", priority = 20 },
-		{ name = "path", priority = 10 },
+		{ name = "nvim_lsp" },
+		{ name = "luasnip" },
+		{ name = "nvim_lua" },
+		{ name = "buffer" },
+		{ name = "path" },
+	},
+	sorting = {
+		comparators = {
+			cmp.config.compare.offset,
+			cmp.config.compare.exact,
+			cmp.config.compare.score,
+			cmp.config.compare.kind,
+			cmp.config.compare.sort_text,
+			cmp.config.compare.length,
+			cmp.config.compare.order,
+		},
 	},
 })
 
@@ -40,7 +60,7 @@ lsp.on_attach(function(client, bufnr)
 		vim.lsp.buf.definition()
 	end, opts)
 	vim.keymap.set("n", "K", function()
-		vim.lsp.buf.hover()
+		vim.lsp.buf.hover() -- FIX: only run when hover is available
 	end, opts)
 	vim.keymap.set("n", "<leader>ws", function()
 		vim.lsp.buf.workspace_symbol()
@@ -63,10 +83,9 @@ lsp.on_attach(function(client, bufnr)
 	vim.keymap.set("n", "<leader>rn", function()
 		vim.lsp.buf.rename()
 	end, opts)
-	vim.keymap.set("n", "<C-Space>", function()
-		vim.lsp.buf.complete()
+	vim.keymap.set("i", "<C-h>", function()
+		vim.lsp.buf.signature_help()
 	end, opts)
-	-- vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
 lsp.setup()
@@ -75,4 +94,6 @@ vim.diagnostic.config({
 	virtual_text = true,
 })
 
-vim.keymap.set("n", "<leader>m", ":Mason<CR>")
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+	underline = false,
+})

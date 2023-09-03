@@ -1,9 +1,10 @@
 require("luasnip.loaders.from_vscode").load()
-local luasnip = require("luasnip")
--- luasnip.snippets = require("luasnip-snippets").load_snippets()
 
-vim.keymap.set({ "i", "s" }, "<Tab>", function()
-	if luasnip.expand_or_jumpable() then
-		luasnip.expand_or_jump()
-	end
+local luasnip = require("luasnip")
+
+vim.keymap.set({ "i", "s" }, "<C-l>", function()
+	luasnip.jump(1)
+end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-h>", function()
+	luasnip.jump(-1)
 end, { silent = true })

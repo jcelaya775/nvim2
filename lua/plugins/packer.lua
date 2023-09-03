@@ -64,6 +64,7 @@ return require("packer").startup(function(use)
 			{ "hrsh7th/cmp-nvim-lsp" }, -- Required
 			{ "hrsh7th/cmp-path" }, -- Required
 			{ "hrsh7th/cmp-buffer" },
+			{ "hrsh7th/cmp-nvim-lua" },
 			{ "hrsh7th/cmp-cmdline" },
 			{ "dcampos/nvim-snippy" },
 			{ "dcampos/cmp-snippy" },
@@ -102,4 +103,18 @@ return require("packer").startup(function(use)
 	})
 	use("unblevable/quick-scope")
 	use("ggandor/leap.nvim")
+	use("RRethy/vim-illuminate")
+	use("romainl/vim-cool")
+	use("Mofiqul/vscode.nvim")
+	use("projekt0n/github-nvim-theme")
+	use("petertriho/nvim-scrollbar")
+	use({
+		"iamcco/markdown-preview.nvim",
+		run = "cd app && npm install",
+		setup = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
+		ft = { "markdown" },
+	})
+	use("onsails/lspkind.nvim")
 end)
