@@ -50,7 +50,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 			fallback()
 		end
 	end),
-	["<Enter>"] = cmp.mapping.confirm({ select = true }),
+	-- ["<Enter>"] = cmp.mapping.confirm({ select = true }),
 	["<C-Space>"] = cmp.mapping.complete(),
 	["<C-j>"] = cmp.mapping.complete(),
 	["<C-k>"] = cmp.mapping.close(),
