@@ -1,5 +1,4 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<CR>")
 
 -- Move
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -89,10 +88,10 @@ vim.keymap.set("n", "<A-q>", "<cmd>qa!<CR>")
 vim.keymap.set("n", "<A-w>", "<cmd>wqa!<CR>")
 
 -- Quickfix list
-vim.keymap.set("n", "<A-n>", "<cmd>cnext<CR>")
-vim.keymap.set("n", "<A-p>", "<cmd>cprev<CR>")
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>")
+-- vim.keymap.set("n", "<A-n>", "<cmd>cnext<CR>")
+-- vim.keymap.set("n", "<A-p>", "<cmd>cprev<CR>")
+-- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>")
+-- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>")
 
 -- Global search and replace
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])

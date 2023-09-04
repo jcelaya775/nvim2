@@ -92,11 +92,6 @@ return require("packer").startup(function(use)
 	use("panozzaj/vim-autocorrect")
 	use("sbdchd/neoformat")
 	use("zbirenbaum/copilot.lua")
-	-- use({
-	-- 	"neoclide/coc.nvim",
-	-- 	branch = "release",
-	-- 	run = "yarn install --frozen-lockfile",
-	-- })
 	use({
 		"folke/todo-comments.nvim",
 		requires = "nvim-lua/plenary.nvim",
@@ -117,4 +112,6 @@ return require("packer").startup(function(use)
 		ft = { "markdown" },
 	})
 	use("onsails/lspkind.nvim")
+	use("ray-x/lsp_signature.nvim")
+	-- use({ "mfussenegger/nvim-dap-python", requires = { "mfussenegger/nvim-dap" } })
 end)

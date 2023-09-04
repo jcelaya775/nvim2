@@ -1,4 +1,4 @@
--- TODO: If in a git reposoitory, only format & truncate changed lines
+-- -- TODO: If in a git reposoitory, only format & truncate changed lines
 vim.cmd([[
 augroup fmt
   autocmd!
