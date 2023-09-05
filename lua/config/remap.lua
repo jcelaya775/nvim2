@@ -61,9 +61,6 @@ vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("v", "<leader>y", '"+y')
 vim.keymap.set("x", "<leader>y", '"+y')
 
--- Yank to clipboard
-vim.keymap.set("n", "<leader>y", '"+y')
-
 -- Escape
 vim.keymap.set("n", "<C-c>", "<Esc>")
 vim.keymap.set("i", "<C-c>", "<Esc>")

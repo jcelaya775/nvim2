@@ -25,7 +25,7 @@ vim.opt.incsearch = true
 
 -- Automatically set <EOL> to unix
 vim.cmd([[
-    autocmd BufNewFile,BufRead,BufWritePre * set fileformat=unix
+    autocmd BufNewFile,BufWritePre * set fileformat=unix
 ]])
 
 -- Disable auto-ccommenting new lines
