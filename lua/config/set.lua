@@ -61,3 +61,13 @@ vim.notify = function(msg, ...)
 end
 
 vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
+
+-- Fix for WSL clipboard
+if vim.fn.has('wsl') == 1 then
+    vim.api.nvim_create_autocmd('TextYankPost', {
+        group = vim.api.nvim_create_augroup('Yank', { clear = true }),
+        callback = function()
+            vim.fn.system('clip.exe', vim.fn.getreg('"'))
+        end,
+    })
+end
