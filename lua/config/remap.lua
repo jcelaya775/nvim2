@@ -25,7 +25,7 @@ vim.keymap.set("n", "<BS>", "dh")
 -- Save
 vim.keymap.set("n", "<C-s>", "<cmd>w!<CR>")
 vim.keymap.set("n", "<C-A-s>", "<cmd>wa!<CR>")
-vim.keymap.set("i", "", "<cmd>w!<CR>")
+vim.keymap.set("i", "<C-s>", "<C-o><cmd>w!<CR>")
 
 -- Select all
 vim.keymap.set("n", "<C-a>", "ggVG")
