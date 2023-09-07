@@ -14,7 +14,7 @@ vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-j>", "<C-w>j")
 
 -- Backspace/delete
-vim.keymap.set("n", "<C-h>", "db") -- <C-BS>
+-- vim.keymap.set("n", "<C-h>", "db") -- <C-BS>
 vim.keymap.set("i", "<C-h>", "<C-w>") -- <C-BS>
 vim.keymap.set("n", "<A-BS>", "db")
 vim.keymap.set("i", "<A-BS>", "<C-w>")
