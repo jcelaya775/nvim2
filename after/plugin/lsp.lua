@@ -102,10 +102,10 @@ lsp.setup_nvim_cmp({
 	},
 	mapping = cmp_mappings,
 	sources = {
-		{ name = "nvim_lsp" },
-		{ name = "luasnip" },
-		{ name = "nvim_lua" },
 		{ name = "buffer" },
+		{ name = "luasnip" },
+		{ name = "nvim_lsp" },
+		{ name = "nvim_lua" },
 		{ name = "path" },
 	},
 	sorting = {
@@ -151,9 +151,9 @@ lsp.on_attach(function(client, bufnr)
 	vim.keymap.set("n", "<leader>rn", function()
 		vim.lsp.buf.rename()
 	end, opts)
-	vim.keymap.set("i", "<C-h>", function()
-		vim.lsp.buf.signature_help()
-	end, opts)
+	-- vim.keymap.set("i", "<C-h>", function()
+	-- 	vim.lsp.buf.signature_help()
+	-- end, opts)
 end)
 
 lsp.setup()

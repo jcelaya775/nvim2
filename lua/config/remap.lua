@@ -13,12 +13,12 @@ vim.keymap.set("n", "<C-l>", "<C-w>l")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-j>", "<C-w>j")
 
--- Backspace
+-- Backspace/delete
+vim.keymap.set("n", "<C-h>", "db") -- <C-BS>
+vim.keymap.set("i", "<C-h>", "<C-w>") -- <C-BS>
 vim.keymap.set("n", "<A-BS>", "db")
-vim.keymap.set("n", "<C-Bs>", "db")
-vim.keymap.set("n", "<C-del>", "dw")
 vim.keymap.set("i", "<A-BS>", "<C-w>")
-vim.keymap.set("i", "<C-BS>", "<C-w>")
+vim.keymap.set("n", "<C-del>", "dw")
 vim.keymap.set("i", "<C-del>", "<Esc>ldwi")
 vim.keymap.set("n", "<BS>", "dh")
 
