@@ -1,6 +1,4 @@
-require("gitsigns").setup({
-	-- current_line_blame = true,
-})
+require("gitsigns").setup()
 
 vim.keymap.set("n", "<leader>gb", "<Cmd>Gitsigns blame_line<CR>")
 vim.keymap.set("n", "<leader>gt", "<Cmd>Gitsigns toggle_current_line_blame<CR>")

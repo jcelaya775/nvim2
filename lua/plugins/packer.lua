@@ -114,4 +114,9 @@ return require("packer").startup(function(use)
 	use("onsails/lspkind.nvim")
 	use("ray-x/lsp_signature.nvim")
 	-- use({ "mfussenegger/nvim-dap-python", requires = { "mfussenegger/nvim-dap" } })
+	use("akinsho/bufferline.nvim")
+	use({
+		"nvim-telescope/telescope-file-browser.nvim",
+		requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+	})
 end)

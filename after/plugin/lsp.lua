@@ -102,10 +102,10 @@ lsp.setup_nvim_cmp({
 	},
 	mapping = cmp_mappings,
 	sources = {
-		{ name = "buffer" },
-		{ name = "luasnip" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
+		{ name = "luasnip" },
+		{ name = "buffer" },
 		{ name = "path" },
 	},
 	sorting = {
@@ -121,11 +121,15 @@ lsp.setup_nvim_cmp({
 	},
 })
 
+local builtin = require("telescope.builtin")
 lsp.on_attach(function(client, bufnr)
 	local opts = { buffer = bufnr, remap = false }
 
 	vim.keymap.set("n", "gd", function()
-		vim.lsp.buf.definition()
+		builtin.lsp_definitions()
+	end, opts)
+	vim.keymap.set("n", "gi", function()
+		builtin.lsp_implementations()
 	end, opts)
 	vim.keymap.set("n", "K", function()
 		vim.lsp.buf.hover() -- TODO: only run when hover is available

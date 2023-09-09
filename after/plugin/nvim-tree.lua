@@ -31,6 +31,13 @@ require("nvim-tree").setup({
 		enable = true,
 		update_cwd = false,
 	},
+	-- tab = {
+	-- 	sync = {
+	-- 		open = true,
+	-- 		close = true,
+	-- 		-- ignore = {},
+	-- 	},
+	-- },
 })
 
-vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<CR>")
+vim.keymap.set("n", "<leader>t", "<cmd>NvimTreeToggle<CR>")

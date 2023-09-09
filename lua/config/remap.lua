@@ -4,6 +4,9 @@ vim.g.mapleader = " "
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+-- Previous buffer
+vim.keymap.set("n", "pb", "<C-6>")
+
 -- Stay in current position when joining lines
 vim.keymap.set("n", "J", "mzJ`z")
 
@@ -15,7 +18,9 @@ vim.keymap.set("n", "<C-j>", "<C-w>j")
 
 -- Backspace/delete
 -- vim.keymap.set("n", "<C-h>", "db") -- <C-BS>
-vim.keymap.set("i", "<C-h>", "<C-w>") -- <C-BS>
+-- vim.keymap.set("i" "<C-h>", "<C-w>") -- <C-BS>
+vim.keymap.set("n", "<BS>", "db")
+vim.keymap.set("n", "<A-BS>", "db")
 vim.keymap.set("n", "<A-BS>", "db")
 vim.keymap.set("i", "<A-BS>", "<C-w>")
 vim.keymap.set("n", "<C-del>", "dw")
@@ -24,8 +29,13 @@ vim.keymap.set("n", "<BS>", "dh")
 
 -- Save
 vim.keymap.set("n", "<C-s>", "<cmd>w!<CR>")
-vim.keymap.set("n", "<C-A-s>", "<cmd>wa!<CR>")
+vim.keymap.set("v", "<C-s>", "<cmd>w!<CR>")
+vim.keymap.set("x", "<C-s>", "<cmd>w!<CR>")
 vim.keymap.set("i", "<C-s>", "<C-o><cmd>w!<CR>")
+vim.keymap.set("n", "<C-A-s>", "<cmd>wa!<CR>")
+vim.keymap.set("v", "<C-A-s>", "<cmd>wa!<CR>")
+vim.keymap.set("x", "<C-A-s>", "<cmd>wa!<CR>")
+vim.keymap.set("i", "<C-A-s>", "<cmd>wa!<CR>")
 
 -- Select all
 vim.keymap.set("n", "<C-a>", "ggVG")
@@ -52,6 +62,8 @@ vim.keymap.set("n", "'c", "'czz")
 vim.keymap.set("n", "'v", "'vzz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "*", "*zz")
+vim.keymap.set("n", "#", "#zz")
 
 -- Paste without yanking
 vim.keymap.set("x", "<leader>p", '"_dP')
@@ -94,4 +106,11 @@ vim.keymap.set("n", "<A-w>", "<cmd>wqa!<CR>")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- chmod +x this file
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+vim.keymap.set("n", "<leader>cx", "<cmd>!chmod +x %<CR>", { silent = true })
+
+-- Buffer movement
+vim.keymap.set("n", "<leader>bn", "<cmd>bn<CR>")
+
+-- Work-around for <Tab> overriding <C-i>
+vim.keymap.set("n", "<C-n>", "<Tab>")
+vim.keymap.set("n", "<Tab>", "<C-n>")
