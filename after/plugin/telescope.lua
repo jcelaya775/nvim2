@@ -25,7 +25,7 @@ local ts_select_dir_for_grep = function(prompt_bufnr)
 end
 require("telescope").setup({
 	defaults = {
-		file_ignore_patterns = { "node_modules", ".git", "package-lock.json" },
+		file_ignore_patterns = { "node_modules/", "^.git/", "package-lock.json" },
 	},
 	pickers = {
 		live_grep = {
@@ -37,6 +37,29 @@ require("telescope").setup({
 					["<C-f>"] = ts_select_dir_for_grep,
 				},
 			},
+			additional_args = function(_)
+				return { "--hidden" }
+			end,
+		},
+		pickers = {
+			find_files = {
+				hidden = true,
+				-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+				find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+			},
+			hidden = true,
+			-- find_command = {
+			-- 	"rg",
+			-- 	"--files",
+			-- 	"--hidden",
+			-- 	"--glob=!**/.git/*",
+			-- 	"--glob=!**/.idea/*",
+			-- 	"--glob=!**/.vscode/*",
+			-- 	"--glob=!**/build/*",
+			-- 	"--glob=!**/dist/*",
+			-- 	"--glob=!**/yarn.lock",
+			-- 	"--glob=!**/package-lock.json",
+			-- },
 		},
 	},
 })
@@ -44,24 +67,30 @@ require("telescope").setup({
 local actions = require("telescope.actions")
 local builtin = require("telescope.builtin")
 
-vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
+local project_dir = os.getenv("PWD") or io.popen("cd"):read()
+local buffer_dir = require("telescope.utils").buffer_dir()
+
+vim.keymap.set("n", "<leader>ff", function()
+	builtin.find_files({ hidden = true })
+end)
 vim.keymap.set("n", "<leader>ps", function()
 	builtin.grep_string({ search = vim.fn.input("Grep > ") })
 end)
 vim.keymap.set("n", "<C-p>", builtin.git_files, {})
-vim.keymap.set("n", "<leader>fsa", function()
+vim.keymap.set("n", "<leader>fs", function()
 	builtin.live_grep()
 end)
+-- vim.keymap.set("n", "<leader>fsc", function()
+-- 	builtin.live_grep({ cwd = buffer_dir })
+-- end)
 vim.keymap.set("n", "<leader>fsr", function()
-	local dir = require("telescope.utils").buffer_dir()
-	builtin.live_grep({ cwd = dir })
+	builtin.live_grep({ cwd = buffer_dir })
 end)
 vim.keymap.set("n", "<leader>fso", function()
-	local dir = require("telescope.utils").buffer_dir()
 	builtin.live_grep({ grep_open_files = true })
 end)
 vim.keymap.set("n", "<leader>fz", function()
-	builtin.grep_string()
+	builtin.grep_string({ search = "" })
 end)
 vim.keymap.set("n", "<leader>fc", function()
 	builtin.current_buffer_fuzzy_find()
@@ -88,7 +117,7 @@ end)
 vim.keymap.set("n", "<leader>gcc", function()
 	builtin.git_bcommits()
 end)
-vim.keymap.set("n", "<leader>gb", function()
+vim.keymap.set("n", "<leader>gbr", function()
 	builtin.git_branches()
 end)
 vim.keymap.set("n", "<leader>gb", function()
@@ -196,3 +225,35 @@ local function close_buffer()
 end
 vim.keymap.set("n", "<leader>x", close_buffer)
 vim.keymap.set("n", "<leader>q", close_buffer)
+
+-- -- Import necessary Telescope modules
+-- local actions = require("telescope.actions")
+-- local finders = require("telescope.finders")
+-- local pickers = require("telescope.pickers")
+-- local conf = require("telescope.config").values
+--
+-- -- Define the custom function to display search results in Telescope
+-- local function search_results(opts)
+-- 	-- Create a new picker
+-- 	pickers
+-- 		.new(opts, {
+-- 			prompt_title = "Search Results",
+-- 			finder = finders.new_table({
+-- 				results = opts.results,
+-- 			}),
+-- 			sorter = conf.generic_sorter(opts),
+-- 			attach_mappings = function(prompt_bufnr)
+-- 				actions.select_default:replace(function()
+-- 					local selection = actions.get_selected_entry(prompt_bufnr)
+-- 					actions.close(prompt_bufnr)
+-- 					-- Handle the selected result (e.g., open the file)
+-- 					-- You can customize this part to fit your needs
+-- 					vim.cmd("edit " .. selection.value)
+-- 				end)
+-- 				return true
+-- 			end,
+-- 		})
+-- 		:find()
+-- end
+--
+-- print(search_results())

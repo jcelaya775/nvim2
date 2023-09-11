@@ -7,7 +7,7 @@ vim.opt.termguicolors = true
 
 -- OR setup with some options
 require("nvim-tree").setup({
-	sort_by = "case_insensitive",
+	sort_by = "name",
 	view = {
 		number = true,
 		relativenumber = true,
@@ -16,14 +16,14 @@ require("nvim-tree").setup({
 		centralize_selection = false,
 	},
 	filters = {
-		dotfiles = true,
+		-- dotfiles = true,
 	},
 	actions = {
 		open_file = {
 			resize_window = false,
 		},
 		expand_all = {
-			exclude = { "node_modules", ".git" },
+			exclude = { "node_modules", ".git/" },
 			max_folder_discovery = 100,
 		},
 	},
@@ -31,6 +31,11 @@ require("nvim-tree").setup({
 		enable = true,
 		update_cwd = false,
 	},
+	-- git = {
+	-- 	enable = true,
+	-- 	ignore = false,
+	-- 	timeout = 500,
+	-- },
 	-- tab = {
 	-- 	sync = {
 	-- 		open = true,

@@ -5,17 +5,17 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Previous buffer
-vim.keymap.set("n", "pb", "<C-6>")
+vim.keymap.set("n", "<leader>pb", "<C-6>")
 
 -- Stay in current position when joining lines
 vim.keymap.set("n", "J", "mzJ`z")
 
--- Window switch
-vim.keymap.set("n", "<C-h>", "<C-w>h")
-vim.keymap.set("n", "<C-l>", "<C-w>l")
-vim.keymap.set("n", "<C-k>", "<C-w>k")
-vim.keymap.set("n", "<C-j>", "<C-w>j")
-
+-- -- Window switch
+-- vim.keymap.set("n", "<C-h>", "<C-w>h")
+-- vim.keymap.set("n", "<C-l>", "<C-w>l")
+-- vim.keymap.set("n", "<C-k>", "<C-w>k")
+-- vim.keymap.set("n", "<C-j>", "<C-w>j")
+--
 -- Backspace/delete
 -- vim.keymap.set("n", "<C-h>", "db") -- <C-BS>
 -- vim.keymap.set("i" "<C-h>", "<C-w>") -- <C-BS>
@@ -72,6 +72,15 @@ vim.keymap.set("x", "<leader>p", '"_dP')
 vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("v", "<leader>y", '"+y')
 vim.keymap.set("x", "<leader>y", '"+y')
+vim.keymap.set("n", "<leader>d", '"+d')
+vim.keymap.set("v", "<leader>d", '"+d')
+vim.keymap.set("x", "<leader>d", '"+d')
+vim.keymap.set("n", "<leader>p", '"+p')
+vim.keymap.set("v", "<leader>p", '"+p')
+vim.keymap.set("x", "<leader>p", '"+p')
+vim.keymap.set("n", "<leader>P", '"+P')
+vim.keymap.set("v", "<leader>P", '"+P')
+vim.keymap.set("x", "<leader>P", '"+P')
 
 -- Escape
 vim.keymap.set("n", "<C-c>", "<Esc>")
@@ -103,13 +112,10 @@ vim.keymap.set("n", "<A-w>", "<cmd>wqa!<CR>")
 -- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>")
 
 -- Global search and replace
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- chmod +x this file
 vim.keymap.set("n", "<leader>cx", "<cmd>!chmod +x %<CR>", { silent = true })
-
--- Buffer movement
-vim.keymap.set("n", "<leader>bn", "<cmd>bn<CR>")
 
 -- Work-around for <Tab> overriding <C-i>
 vim.keymap.set("n", "<C-n>", "<Tab>")
