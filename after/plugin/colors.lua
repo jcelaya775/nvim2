@@ -6,7 +6,7 @@ function ColorMyPencils(color)
 	-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 
-ColorMyPencils()
+ColorMyPencils("github_dark_tritanopia")
 
 -- vim.cmd("highlight Normal guibg=none")
 -- vim.cmd("highlight NonText guibg=none")

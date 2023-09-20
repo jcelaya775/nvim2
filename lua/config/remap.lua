@@ -23,8 +23,8 @@ vim.keymap.set("n", "<BS>", "db")
 vim.keymap.set("n", "<A-BS>", "db")
 vim.keymap.set("n", "<A-BS>", "db")
 vim.keymap.set("i", "<A-BS>", "<C-w>")
-vim.keymap.set("n", "<C-del>", "dw")
-vim.keymap.set("i", "<C-del>", "<Esc>ldwi")
+vim.keymap.set("n", "<C-del>", "de")
+vim.keymap.set("i", "<C-del>", "<Esc>ldwe")
 vim.keymap.set("n", "<BS>", "dh")
 
 -- Save
@@ -41,10 +41,10 @@ vim.keymap.set("i", "<C-A-s>", "<cmd>wa!<CR>")
 vim.keymap.set("n", "<C-a>", "ggVG")
 
 -- Center
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-f>", "<C-f>zz")
-vim.keymap.set("n", "<C-b>", "<C-b>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>M")
+vim.keymap.set("n", "<C-d>", "<C-d>M")
+vim.keymap.set("n", "<C-f>", "<C-f>M")
+vim.keymap.set("n", "<C-b>", "<C-b>M")
 vim.keymap.set("n", "G", "Gzz")
 vim.keymap.set("v", "G", "Gzz")
 vim.keymap.set("x", "G", "Gzz")
@@ -64,6 +64,14 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "*", "*zz")
 vim.keymap.set("n", "#", "#zz")
+vim.keymap.set("n", "<M-n>", function ()
+  require("illuminate").goto_next_reference()
+  vim.api.nvim_feedkeys("zz", "n", true)
+end)
+vim.keymap.set("n", "<M-p>", function ()
+  require("illuminate").goto_prev_reference()
+  vim.api.nvim_feedkeys("zz", "n", true)
+end)
 
 -- Paste without yanking
 vim.keymap.set("x", "<leader>p", '"_dP')
@@ -116,7 +124,3 @@ vim.keymap.set("n", "<leader>sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left>
 
 -- chmod +x this file
 vim.keymap.set("n", "<leader>cx", "<cmd>!chmod +x %<CR>", { silent = true })
-
--- Work-around for <Tab> overriding <C-i>
-vim.keymap.set("n", "<C-n>", "<Tab>")
-vim.keymap.set("n", "<Tab>", "<C-n>")

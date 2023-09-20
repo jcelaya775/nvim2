@@ -1,9 +1,9 @@
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.autoindent = true
 vim.opt.smarttab = true
@@ -24,9 +24,9 @@ vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
 -- Automatically set <EOL> to unix
-vim.cmd([[
-    autocmd BufNewFile,BufWritePre * set fileformat=unix
-]])
+-- vim.cmd([[
+--     autocmd BufNewFile,BufWritePre * set fileformat=unix
+-- ]])
 
 -- Disable auto-ccommenting new lines
 vim.cmd([[
@@ -43,10 +43,10 @@ vim.opt.updatetime = 50
 
 -- vim.opt.colorcolumn = "80"
 
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-	pattern = { "*" },
-	command = [[%s/\s\+$//e]],
-})
+-- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+-- 	pattern = { "*" },
+-- 	command = [[%s/\s\+$//e]],
+-- })
 
 vim.cmd("setlocal spell spelllang=en_us")
 

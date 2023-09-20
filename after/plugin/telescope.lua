@@ -127,7 +127,7 @@ vim.keymap.set("n", "z=", function()
 	builtin.spell_suggest()
 end)
 
-vim.keymap.set("n", "<Tab>", function()
+vim.keymap.set("n", "<leader><Tab>", function()
 	builtin.buffers({
 		sort_lastused = true,
 		show_all_buffers = true,
@@ -156,7 +156,7 @@ local function move_telescope_picker_down()
 	end
 end
 
-vim.keymap.set("n", "<S-Tab>", function()
+vim.keymap.set("n", "<leader><S-Tab>", function()
 	builtin.buffers({
 		sort_lastused = true,
 		show_all_buffers = true,

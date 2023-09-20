@@ -13,7 +13,7 @@ lsp.ensure_installed({
 	"cssmodules_ls",
 	"docker_compose_language_service",
 	"dockerls",
-	"emmet_language_server",
+	-- "emmet-ls",
 	"eslint",
 	"gradle_ls",
 	"graphql",
@@ -84,14 +84,6 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 })
 cmp_mappings["<C-y>"] = nil
 
-function cmp_mappings:complete()
-	if copilot_suggestion.is_visible() then
-		copilot_suggestion.accept()
-	else
-		cmp.mapping.complete()
-	end
-end
-
 vim.keymap.set("n", "<leader>m", ":Mason<CR>")
 
 lsp.setup_nvim_cmp({
@@ -107,6 +99,7 @@ lsp.setup_nvim_cmp({
 		{ name = "luasnip" },
 		{ name = "buffer" },
 		{ name = "path" },
+		{ name = "fake" },
 	},
 	sorting = {
 		comparators = {
@@ -120,6 +113,10 @@ lsp.setup_nvim_cmp({
 		},
 	},
 })
+
+-- lsp.manage_nvim_cmp({
+-- 	set_format = true,
+-- })
 
 local builtin = require("telescope.builtin")
 lsp.on_attach(function(client, bufnr)
