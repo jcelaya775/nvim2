@@ -24,7 +24,7 @@ vim.keymap.set("n", "<A-BS>", "db")
 vim.keymap.set("n", "<A-BS>", "db")
 vim.keymap.set("i", "<A-BS>", "<C-w>")
 vim.keymap.set("n", "<C-del>", "de")
-vim.keymap.set("i", "<C-del>", "<Esc>ldwe")
+vim.keymap.set("i", "<C-del>", "<Esc>ldwi")
 vim.keymap.set("n", "<BS>", "dh")
 
 -- Save
