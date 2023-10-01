@@ -31,18 +31,15 @@ require("nvim-tree").setup({
 		enable = true,
 		update_cwd = false,
 	},
-	-- git = {
-	-- 	enable = true,
-	-- 	ignore = false,
-	-- 	timeout = 500,
-	-- },
-	-- tab = {
-	-- 	sync = {
-	-- 		open = true,
-	-- 		close = true,
-	-- 		-- ignore = {},
-	-- 	},
-	-- },
+  on_attach = function(bufnr)
+    local api = require('nvim-tree.api')
+
+    -- Use all default mappings
+    api.config.mappings.default_on_attach(bufnr)
+
+    -- Remove a default mapping
+    vim.keymap.del('n', '<C-e>', { buffer = bufnr })
+  end
 })
 
 vim.keymap.set("n", "<leader>t", "<cmd>NvimTreeToggle<CR>")
