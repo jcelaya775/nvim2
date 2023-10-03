@@ -16,7 +16,7 @@ lsp.ensure_installed({
 	"jdtls",
 	"jsonls",
 	"lua_ls",
-  "luau_lsp",
+	"luau_lsp",
 	"powershell_es",
 	"pyright",
 	"rust_analyzer",
