@@ -34,6 +34,11 @@ return require("packer").startup(function(use)
 	use("ThePrimeagen/harpoon")
 	-- use 'romgrk/barbar.nvim'
 	use("terrortylor/nvim-comment")
+	use({
+		"folke/todo-comments.nvim",
+		requires = "nvim-lua/plenary.nvim",
+	})
+	use("JoosepAlviste/nvim-ts-context-commentstring")
 	use("mbbill/undotree")
 	use("tpope/vim-fugitive")
 
@@ -92,10 +97,6 @@ return require("packer").startup(function(use)
 	use("panozzaj/vim-autocorrect")
 	use("sbdchd/neoformat")
 	use("zbirenbaum/copilot.lua")
-	use({
-		"folke/todo-comments.nvim",
-		requires = "nvim-lua/plenary.nvim",
-	})
 	use("unblevable/quick-scope")
 	use("ggandor/leap.nvim")
 	use("RRethy/vim-illuminate")
