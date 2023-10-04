@@ -106,10 +106,6 @@ lsp.setup_nvim_cmp({
 	},
 })
 
--- lsp.manage_nvim_cmp({
--- 	set_format = true,
--- })
-
 local builtin = require("telescope.builtin")
 lsp.on_attach(function(client, bufnr)
 	local opts = { buffer = bufnr, remap = false }
