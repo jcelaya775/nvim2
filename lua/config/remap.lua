@@ -7,6 +7,20 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- Previous buffer
 vim.keymap.set("n", "<leader>pb", "<C-6>")
 
+-- Close buffers
+local function close_buffer()
+	local bufnr = vim.api.nvim_get_current_buf()
+	vim.api.nvim_buf_delete(bufnr, { force = true })
+
+	local tree = require("nvim-tree.api").tree
+	if tree.is_visible() then
+		vim.api.nvim_command("NvimTreeClose")
+		vim.api.nvim_command("NvimTreeOpen")
+		vim.api.nvim_command("wincmd p") -- mave to previous window
+	end
+end
+vim.keymap.set("n", "<leader>x", close_buffer)
+
 -- Stay in current position when joining lines
 vim.keymap.set("n", "J", "mzJ`z")
 
