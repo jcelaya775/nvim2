@@ -62,7 +62,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 			fallback()
 		end
 	end),
-	["<A-l>"] = cmp.mapping(function(fallback)
+	["<C-A-l>"] = cmp.mapping(function(fallback)
 		if copilot_suggestion.is_visible() then
 			copilot_suggestion.accept_line()
 		else

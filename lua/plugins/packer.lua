@@ -17,10 +17,7 @@ return require("packer").startup(function(use)
 	use("nvim-tree/nvim-tree.lua")
 	use("nvim-tree/nvim-web-devicons")
 	use("folke/tokyonight.nvim")
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
-	})
+	use("nvim-treesitter/nvim-treesitter")
 	use("nvim-treesitter/playground")
 	use("feline-nvim/feline.nvim")
 	use({ "catppuccin/nvim", as = "catppuccin" })
