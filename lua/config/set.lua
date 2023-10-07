@@ -28,7 +28,7 @@ vim.cmd([[
     autocmd BufNewFile,BufWritePre * set fileformat=unix
 ]])
 
--- Disable auto-ccommenting new lines
+-- Disable auto-commenting new lines
 vim.cmd([[
     autocmd FileType * set formatoptions-=cro
 ]])
@@ -41,12 +41,10 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
--- vim.opt.colorcolumn = "80"
-
--- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
--- 	pattern = { "*" },
--- 	command = [[%s/\s\+$//e]],
--- })
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+	pattern = { "*" },
+	command = [[%s/\s\+$//e]],
+})
 
 vim.cmd("setlocal spell spelllang=en_us")
 

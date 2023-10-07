@@ -55,6 +55,8 @@ vim.keymap.set("i", "<C-A-s>", "<cmd>wa!<CR>")
 vim.keymap.set("n", "<C-a>", "ggVG")
 
 -- Center
+vim.keymap.set("n", "<C-o>", "<C-o>zz")
+vim.keymap.set("n", "<C-i>", "<C-i>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>M")
 vim.keymap.set("n", "<C-d>", "<C-d>M")
 vim.keymap.set("n", "<C-f>", "<C-f>M")
