@@ -42,8 +42,8 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-	pattern = { "*" },
-	command = [[%s/\s\+$//e]],
+  pattern = { "*" },
+  command = [[%s/\s\+$//e]],
 })
 
 vim.cmd("setlocal spell spelllang=en_us")
@@ -51,21 +51,21 @@ vim.cmd("setlocal spell spelllang=en_us")
 -- Handle format errors
 local notify = vim.notify
 vim.notify = function(msg, ...)
-	if msg:match("warning: multiple different client offset_encodings") then
-		return
-	end
+  if msg:match("warning: multiple different client offset_encodings") then
+    return
+  end
 
-	notify(msg, ...)
+  notify(msg, ...)
 end
 
 vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
 
 -- Fix for WSL clipboard
 if vim.fn.has("wsl") == 1 then
-	vim.api.nvim_create_autocmd("TextYankPost", {
-		group = vim.api.nvim_create_augroup("Yank", { clear = true }),
-		callback = function()
-			vim.fn.system("clip.exe", vim.fn.getreg('"'))
-		end,
-	})
+  vim.api.nvim_create_autocmd("TextYankPost", {
+    group = vim.api.nvim_create_augroup("Yank", { clear = true }),
+    callback = function()
+      vim.fn.system("clip.exe", vim.fn.getreg('"'))
+    end,
+  })
 end

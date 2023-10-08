@@ -9,15 +9,15 @@ vim.keymap.set("n", "<leader>pb", "<C-6>")
 
 -- Close buffers
 local function close_buffer()
-	local bufnr = vim.api.nvim_get_current_buf()
-	vim.api.nvim_buf_delete(bufnr, { force = true })
+  local bufnr = vim.api.nvim_get_current_buf()
+  vim.api.nvim_buf_delete(bufnr, { force = true })
 
-	local tree = require("nvim-tree.api").tree
-	if tree.is_visible() then
-		vim.api.nvim_command("NvimTreeClose")
-		vim.api.nvim_command("NvimTreeOpen")
-		vim.api.nvim_command("wincmd p") -- mave to previous window
-	end
+  local tree = require("nvim-tree.api").tree
+  if tree.is_visible() then
+    vim.api.nvim_command("NvimTreeClose")
+    vim.api.nvim_command("NvimTreeOpen")
+    vim.api.nvim_command("wincmd p") -- mave to previous window
+  end
 end
 vim.keymap.set("n", "<leader>x", close_buffer)
 
@@ -80,14 +80,6 @@ vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "*", "*zz")
 vim.keymap.set("n", "#", "#zz")
-vim.keymap.set("n", "<M-n>", function()
-	require("illuminate").goto_next_reference()
-	vim.api.nvim_feedkeys("zz", "n", true)
-end)
-vim.keymap.set("n", "<M-p>", function()
-	require("illuminate").goto_prev_reference()
-	vim.api.nvim_feedkeys("zz", "n", true)
-end)
 
 -- Paste without yanking
 vim.keymap.set("x", "<leader>p", '"_dP')
