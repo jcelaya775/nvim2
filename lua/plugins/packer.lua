@@ -120,4 +120,9 @@ return require("packer").startup(function(use)
   use("stevearc/conform.nvim")
   use("mfussenegger/nvim-lint")
   use("WhoIsSethDaniel/mason-tool-installer.nvim")
+  use({
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    after = "nvim-treesitter",
+    requires = "nvim-treesitter/nvim-treesitter",
+  })
 end)

@@ -29,7 +29,7 @@ vim.keymap.set("n", "J", "mzJ`z")
 -- vim.keymap.set("n", "<C-l>", "<C-w>l")
 -- vim.keymap.set("n", "<C-k>", "<C-w>k")
 -- vim.keymap.set("n", "<C-j>", "<C-w>j")
---
+
 -- Backspace/delete
 -- vim.keymap.set("n", "<C-h>", "db") -- <C-BS>
 -- vim.keymap.set("i" "<C-h>", "<C-w>") -- <C-BS>
@@ -132,3 +132,6 @@ vim.keymap.set("n", "<leader>sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left>
 
 -- chmod +x this file
 vim.keymap.set("n", "<leader>cx", "<cmd>!chmod +x %<CR>", { silent = true })
+
+-- Help menu
+vim.keymap.set("n", "<leader>h", ":vert h ")
