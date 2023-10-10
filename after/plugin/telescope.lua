@@ -1,4 +1,9 @@
-require("telescope").setup({
+local telescope = require("telescope")
+local actions = require("telescope.actions")
+local builtin = require("telescope.builtin")
+local utils = require("telescope.utils")
+
+telescope.setup({
   defaults = {
     file_ignore_patterns = { "node_modules/", "^.git/", "package-lock.json" },
   },
@@ -23,25 +28,11 @@ require("telescope").setup({
         find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
       },
       hidden = true,
-      -- find_command = {
-      -- 	"rg",
-      -- 	"--files",
-      -- 	"--hidden",
-      -- 	"--glob=!**/.git/*",
-      -- 	"--glob=!**/.idea/*",
-      -- 	"--glob=!**/.vscode/*",
-      -- 	"--glob=!**/build/*",
-      -- 	"--glob=!**/dist/*",
-      -- 	"--glob=!**/yarn.lock",
-      -- 	"--glob=!**/package-lock.json",
-      -- },
     },
   },
 })
 
-local actions = require("telescope.actions")
-local builtin = require("telescope.builtin")
-local utils = require("telescope.utils")
+telescope.load_extension("fzf")
 
 local project_dir = os.getenv("PWD") or io.popen("cd"):read()
 
@@ -55,8 +46,8 @@ vim.keymap.set("n", "<leader>fo", function()
 end)
 
 -- Search
-vim.keymap.set("n", "<leader>ps", function()
-  builtin.grep_string({ search = vim.fn.input("Grep > ") })
+vim.keymap.set("n", "<leader>fsw", function()
+  builtin.grep_string()
 end)
 vim.keymap.set("n", "<leader>fss", function()
   builtin.live_grep()

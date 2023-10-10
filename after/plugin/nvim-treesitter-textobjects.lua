@@ -103,6 +103,7 @@ require("nvim-treesitter.configs").setup({
   },
 })
 
+-- TODO: Make this work with quick-scope
 local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
 
 vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
