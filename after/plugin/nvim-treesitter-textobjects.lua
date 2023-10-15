@@ -100,16 +100,26 @@ require("nvim-treesitter.configs").setup({
         ["[Z"] = { query = "@fold", query_group = "folds", desc = "Prev fold end" },
       },
     },
+    lsp_interop = {
+      enable = true,
+      border = "rounded",
+      floating_preview_opts = {},
+      peek_definition_code = {
+        ["<leader>k"] = "@function.outer",
+        ["<leader>K"] = "@class.outer",
+      },
+    },
   },
 })
 
--- TODO: Make this work with quick-scope
 local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
 
-vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
-vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
+vim.keymap.set({ "n", "x", "o" }, "<A-0>", function()
+  ts_repeat_move.repeat_last_move_next()
+  vim.api.nvim_feedkeys("zz", "n", true)
+end)
 
-vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f)
-vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F)
-vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t)
-vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
+vim.keymap.set({ "n", "x", "o" }, "<A-9>", function()
+  ts_repeat_move.repeat_last_move_previous()
+  vim.api.nvim_feedkeys("zz", "n", true)
+end)

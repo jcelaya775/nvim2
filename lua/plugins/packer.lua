@@ -19,7 +19,6 @@ return require("packer").startup(function(use)
   use("folke/tokyonight.nvim")
   use("nvim-treesitter/nvim-treesitter")
   use("nvim-treesitter/playground")
-  use("feline-nvim/feline.nvim")
   use({ "catppuccin/nvim", as = "catppuccin" })
   use({
     "lewis6991/gitsigns.nvim",
@@ -58,7 +57,12 @@ return require("packer").startup(function(use)
     branch = "v2.x",
     requires = {
       -- LSP Support
-      { "neovim/nvim-lspconfig" }, -- Required
+      {
+        "neovim/nvim-lspconfig", -- Required
+        requires = {
+          "antosha417/nvim-lsp-file-operations",
+        },
+      },
       { "williamboman/mason.nvim" }, -- Optional
       { "williamboman/mason-lspconfig.nvim" }, -- Optional
       -- Autocompletion
@@ -117,6 +121,7 @@ return require("packer").startup(function(use)
     requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
   })
   use({ "briones-gabriel/darcula-solid.nvim", requires = "rktjmp/lush.nvim" })
+  use("kvrohit/mellow.nvim") -- color theme
   use("christoomey/vim-tmux-navigator")
   use("machakann/vim-highlightedyank")
   use("mg979/vim-visual-multi")
@@ -129,4 +134,9 @@ return require("packer").startup(function(use)
     requires = "nvim-treesitter/nvim-treesitter",
   })
   use("stevearc/dressing.nvim")
+  use({
+    "nvim-lualine/lualine.nvim",
+    requires = { "nvim-tree/nvim-web-devicons", opt = true },
+  })
+  use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
 end)

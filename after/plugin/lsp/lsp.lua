@@ -1,4 +1,11 @@
+-- TODO: Disable emmet for text files
+
 local lsp = require("lsp-zero")
+local cmp = require("cmp")
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
+local copilot_suggestion = require("copilot.suggestion")
+local luasnip = require("luasnip")
+local lspconfig = require("lspconfig")
 
 lsp.preset("recommended")
 
@@ -13,6 +20,7 @@ lsp.ensure_installed({
   "gradle_ls",
   "groovyls",
   "html",
+  "emmet_ls",
   "jdtls",
   "jsonls",
   "lua_ls",
@@ -28,11 +36,6 @@ lsp.ensure_installed({
 
 -- Fix Undefined global 'vim'
 lsp.nvim_workspace()
-
-local cmp = require("cmp")
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local copilot_suggestion = require("copilot.suggestion")
-local luasnip = require("luasnip")
 
 local cmp_mappings = lsp.defaults.cmp_mappings({
   ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
@@ -96,6 +99,9 @@ lsp.setup_nvim_cmp({
     { name = "fake" },
   },
   sorting = {
+    -- TODO: Implement sorting
+    -- * Favor functions w/ less params
+    -- * Lower emmet priority
     comparators = {
       -- cmp.config.compare.offset,
       -- cmp.config.compare.exact,
@@ -132,9 +138,9 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "gi", function()
     builtin.lsp_implementations()
   end, opts)
-  vim.keymap.set("n", "K", function()
-    vim.lsp.buf.hover() -- TODO: only run when hover is available
-  end, opts)
+  -- vim.keymap.set("n", "K", function()
+  --   vim.lsp.buf.hover()
+  -- end, opts)
   vim.keymap.set("n", "<leader>ws", function()
     vim.lsp.buf.workspace_symbol()
   end, opts)
