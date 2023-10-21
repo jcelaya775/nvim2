@@ -4,8 +4,99 @@ vim.g.mapleader = " "
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
--- Previous buffer
-vim.keymap.set("n", "<leader>pb", "<C-6>")
+-- TODO: Reorder buffers in MRU (most recently used) when opened
+-- Use this relative buffer list for <C-A-o> and <C-A-i> as well
+-- But, <C-A-o> and <C-A-i> should not change the order of the MRU list
+-- Idea: Use :ls to get the buffer list and then use :bdelete to delete the buffer
+
+local mru_buffers = {}
+local buffer_list = vim.fn.getbufinfo({ buflisted = 1 })
+
+for _, buffer in ipairs(buffer_list) do
+  table.insert(mru_buffers, {
+    name = buffer.name,
+    id = buffer.bufnr,
+    listed = buffer.listed,
+  })
+end
+
+-- Move the element located n positions away from end of the list to the end of the list
+local pop_back = function(list, n)
+  local element = list[#list - n]
+  table.remove(list, #list - n)
+  table.insert(list, element)
+end
+
+local print_list = function(list)
+  for _, item in ipairs(list) do
+    print(item.name)
+  end
+end
+
+print_list(mru_buffers)
+
+-- NOTE: Can I create a vim plugin for this functionality?
+-- OR: I should see if I can just use telescope's buffer mru list instead
+
+-- Jump to previous nth buffer
+-- TODO: Create a buffer access function that cycles back to start if n is greater than the length of the list
+vim.keymap.set("n", "<C-A-j>", function()
+  -- TODO: Eventually, buffer list will be maintained elsewhere through event listeners
+  -- so, only these lines are needed
+  -- local buffer = buffers[#buffers - 1]
+  -- vim.cmd(":buffer " .. buffer.id)
+
+  local buffer = mru_buffers[#mru_buffers - 1]
+  vim.cmd(":buffer " .. buffer.id)
+  print(":buffer " .. buffer.name)
+  pop_back(mru_buffers, 1)
+end)
+vim.keymap.set("n", "<C-A-k>", function()
+  local buffer = mru_buffers[#mru_buffers - 2]
+  vim.cmd(":buffer " .. buffer.id)
+  print(":buffer " .. buffer.name)
+  pop_back(mru_buffers, 2)
+end)
+vim.keymap.set("n", "<C-A-l>", function()
+  local buffer = mru_buffers[#mru_buffers - 3]
+  vim.cmd(":buffer " .. buffer.id)
+  print(":buffer " .. buffer.name)
+  pop_back(mru_buffers, 3)
+end)
+vim.keymap.set("n", "<C-A-;>", function()
+  local buffer = mru_buffers[#mru_buffers - 4]
+  vim.cmd(":buffer " .. buffer.id)
+  print(":buffer " .. buffer.name)
+  pop_back(mru_buffers, 4)
+end)
+
+-- Cycle through buffers
+-- TODO: Do not cycle past beginning or end of list
+-- May need a special case for when jumping to a mru buffer after cycling
+--  - Handle this mru case differently
+--    - Instead of: pop_back(1), pop_back(2), etc.
+--    - DO: pop_back(curr_pos); pop_back(1)
+-- This way, we switch back to the original mru buffer while being able to switch back to the buffer that we switched from
+local cycle = function(list, n)
+  local element = list[#list - n]
+  table.remove(list, #list - n)
+  table.insert(list, 1, element)
+end
+local buffer_idx = 1 -- TODO: Update this index when buffers are opened/closed
+-- if existing buffer is closed, update idx to previously opened buffer
+-- if new buffer is opened, update idx to new buffer
+vim.keymap.set("n", "<C-A-o>", ":bprevious<CR>")
+vim.keymap.set("n", "<C-A-i>", ":bnext<CR>")
+
+-- TODO: Set event listeners to update buffer list upon closing/opening buffers
+-- New buffer event: Telescope, nvim-tree, etc. (or autocmd -> BufNewFile?)
+--   - Add buffer to list
+-- Open buffer event: autocmd BufEnter
+--   - Move buffer to end of list
+-- Delete event: <C-x> or <C-d> (or autocmd -> BufDelete?)
+--   - Remove buffer from list
+-- NOTE: Look out for [No Name] buffers
+-- For current testing, source this file everytime buffers are opened/closed
 
 -- Close buffers
 local function close_buffer()
@@ -24,15 +115,7 @@ vim.keymap.set("n", "<leader>x", close_buffer)
 -- Stay in current position when joining lines
 vim.keymap.set("n", "J", "mzJ`z")
 
--- -- Window switch
--- vim.keymap.set("n", "<C-h>", "<C-w>h")
--- vim.keymap.set("n", "<C-l>", "<C-w>l")
--- vim.keymap.set("n", "<C-k>", "<C-w>k")
--- vim.keymap.set("n", "<C-j>", "<C-w>j")
-
 -- Backspace/delete
--- vim.keymap.set("n", "<C-h>", "db") -- <C-BS>
--- vim.keymap.set("i" "<C-h>", "<C-w>") -- <C-BS>
 vim.keymap.set("n", "<BS>", "db")
 vim.keymap.set("n", "<A-BS>", "db")
 vim.keymap.set("n", "<A-BS>", "db")

@@ -32,7 +32,7 @@ telescope.setup({
   },
 })
 
-telescope.load_extension("fzf")
+-- telescope.load_extension("fzf")
 
 local project_dir = os.getenv("PWD") or io.popen("cd"):read()
 
@@ -112,8 +112,13 @@ vim.keymap.set("n", "z=", function()
 end)
 
 -- Buffers
+-- TODO: Reference telescope docs for S-Tab
+-- ACTIONS_SET                                              *telescope.actions.set*
+-- action_set.shift_selection({prompt_bufnr}, {change}) *telescope.actions.set.shift_selection()*
+--     Move the current selection of a picker {change} rows. Handles not
+--     overflowing / underflowing the list.
 vim.keymap.set("n", "<leader><Tab>", function()
-  builtin.buffers({
+  local mru_buffers = builtin.buffers({
     sort_lastused = true,
     show_all_buffers = true,
     sorter = require("telescope.sorters").get_substr_matcher(),
@@ -122,5 +127,54 @@ vim.keymap.set("n", "<leader><Tab>", function()
       map("n", "<c-d>", actions.delete_buffer)
       return true
     end,
+    -- actions.set.select(1)
   })
+end)
+
+-- local state = require("telescope.actions.state")
+-- for elem, idx in ipairs({ "n", "i" }) do
+--   print(idx)
+--   print(elem)
+-- end
+
+-- local finders = require("telescope.finders")
+-- local pickers = require("telescope.pickers")
+-- local sorters = require("telescope.sorters")
+-- local function getBufferList()
+--   local bufferList = {}
+--   pickers
+--     .new({}, {
+--       finder = finders.new_buffer({
+--         results = "all",
+--         get_bufnr = true,
+--       }),
+--       sorter = sorters.get_substr_matcher(),
+--       attach_mappings = function(_, map)
+--         -- Attach custom mappings if needed
+--         map("i", "<c-d>", actions.delete_buffer)
+--         map("n", "<c-d>", actions.delete_buffer)
+--         return true
+--       end,
+--       on_select = function(entry)
+--         table.insert(bufferList, entry.value)
+--       end,
+--     })
+--     :find()
+--   return bufferList
+-- end
+--
+-- -- Get the buffer list using the function
+-- local bufferList = getBufferList()
+--
+-- -- Print the buffer list
+-- for _, buffer in ipairs(bufferList) do
+--   print("Buffer name:", buffer.name)
+--   print("Buffer number:", buffer.bufnr)
+-- end
+
+-- Marks
+-- TODO: Display marks only for current buffer or project
+vim.keymap.set("n", "<leader>fm", function()
+  local file = vim.fn.expand("%:p")
+  builtin.marks({ search_dirs = { file } })
 end)

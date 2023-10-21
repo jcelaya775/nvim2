@@ -92,8 +92,11 @@ lsp.setup_nvim_cmp({
   mapping = cmp_mappings,
   sources = {
     { name = "nvim_lsp" },
+    { name = "tsserver" },
+    { name = "eslint" },
     { name = "nvim_lua" },
     { name = "luasnip" },
+    { name = "emmet_ls" },
     { name = "buffer" },
     { name = "path" },
     { name = "fake" },
@@ -103,34 +106,39 @@ lsp.setup_nvim_cmp({
     -- * Favor functions w/ less params
     -- * Lower emmet priority
     comparators = {
-      -- cmp.config.compare.offset,
-      -- cmp.config.compare.exact,
-      -- cmp.config.compare.score,
-      -- cmp.config.compare.kind,
-      -- cmp.config.compare.sort_text,
-      -- cmp.config.compare.length,
-      -- cmp.config.compare.order,
+      function(entry1, entry2)
+        local score1 = entry1.completion_item.label
+        local score2 = entry2.completion_item.label
+
+        local file = io.open("tmp.txt", "a")
+        if file == nil then
+          print("Error opening file")
+          return
+        end
+
+        file:write("New test:\n\n")
+
+        file:write(score1 .. "\n")
+        file:write(score2 .. "\n")
+
+        file:write("\n\nDone.\n\n")
+
+        --   if score1 == score2 then
+        --     return cmp.entry_cmp(entry1, entry2)
+        --   end
+        --   return score1 > score2
+      end,
     },
   },
 })
 
+-- io.output(file)
+-- io.write(entry1.name)
+-- io.write(entry2.name)
+
 local builtin = require("telescope.builtin")
 lsp.on_attach(function(client, bufnr)
   local opts = { buffer = bufnr, remap = false }
-
-  -- local augroup_id = vim.api.nvim_create_augroup("FormatModifications", { clear = false })
-  -- vim.api.nvim_clear_autocmds({ group = augroup_id, buffer = bufnr })
-  --
-  -- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  -- 	group = augroup_id,
-  -- 	buffer = bufnr,
-  -- 	callback = function()
-  -- 		-- if client.server_capabilities.documentRangeFormattingProvider then
-  -- 			local lsp_format_modifications = require("lsp-format-modifications")
-  -- 			lsp_format_modifications.format_modifications(client, bufnr)
-  -- 		-- end
-  -- 	end,
-  -- })
 
   vim.keymap.set("n", "gd", function()
     builtin.lsp_definitions()

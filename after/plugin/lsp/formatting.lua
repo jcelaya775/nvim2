@@ -24,7 +24,9 @@ conform.setup({
     timeout_ms = 500,
   },
 
-  vim.keymap.set({ "n", "v" }, "<leader>mp", function()
+  -- Range formatting does not work correctly/consistenly
+  -- Hence, formatting only-changed-lines is not possible with conform
+  vim.keymap.set({ "n", "v", "x", "o" }, "<leader>mp", function()
     conform.format({
       lsp_fallback = true,
       async = false,
