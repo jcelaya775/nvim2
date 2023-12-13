@@ -32,7 +32,7 @@ telescope.setup({
   },
 })
 
--- telescope.load_extension("fzf")
+telescope.load_extension("fzf")
 
 local project_dir = os.getenv("PWD") or io.popen("cd"):read()
 
@@ -102,7 +102,7 @@ end)
 vim.keymap.set("n", "<leader>gcc", function()
   builtin.git_bcommits()
 end)
-vim.keymap.set("n", "<leader>gb", function()
+vim.keymap.set("n", "<leader>gbr", function()
   builtin.git_branches()
 end)
 
