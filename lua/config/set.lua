@@ -15,6 +15,7 @@ vim.opt.syntax = "on"
 vim.opt.mouse = "a"
 
 vim.opt.wrap = false
+vim.opt.cursorline = true
 
 vim.opt.swapfile = false
 vim.opt.backup = false
