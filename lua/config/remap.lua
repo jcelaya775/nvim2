@@ -1,11 +1,14 @@
 vim.g.mapleader = " "
 
 -- Move
+vim.keymap.set("v", "<C-A-j>", "hello")
+vim.keymap.set("v", "<C-A-k>", ":m '<-2<CR>gv=gv")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
--- Previous buffer
-vim.keymap.set("n", "<leader>pb", "<C-6>")
+-- Moving between buffers
+vim.keymap.set("n", "<C-A-o>", ":bprev<CR>")
+vim.keymap.set("n", "<C-A-i>", ":bnext<CR>")
 
 -- Close buffers
 local function close_buffer()
@@ -31,8 +34,6 @@ vim.keymap.set("n", "J", "mzJ`z")
 -- vim.keymap.set("n", "<C-j>", "<C-w>j")
 
 -- Backspace/delete
--- vim.keymap.set("n", "<C-h>", "db") -- <C-BS>
--- vim.keymap.set("i" "<C-h>", "<C-w>") -- <C-BS>
 vim.keymap.set("n", "<BS>", "db")
 vim.keymap.set("n", "<A-BS>", "db")
 vim.keymap.set("n", "<A-BS>", "db")
@@ -81,9 +82,6 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "*", "*zz")
 vim.keymap.set("n", "#", "#zz")
 vim.keymap.set("n", "%", "%zz")
-
--- Paste without yanking
-vim.keymap.set("x", "<leader>p", '"_dP')
 
 -- Yank to system clipboard
 vim.keymap.set("n", "<leader>y", '"+y')

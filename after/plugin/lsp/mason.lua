@@ -3,11 +3,13 @@ require("mason").setup({
   mason_tool_installer.setup({
     ensure_installed = {
       "prettier", -- prettier formatter
+      "eslint_d", -- javascript linter
       "stylua", -- lua formatter
       "isort", -- python formatter
       "black", -- python formatter
-      "eslint_d", -- javascript linter
       "pylint", -- python linter
+      "mypy",
+      "ruff",
     },
   }),
 })

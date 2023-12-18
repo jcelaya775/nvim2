@@ -76,4 +76,5 @@ require("ufo").setup({
       jumpBot = "]",
     },
   },
+  fold_virt_text_handler = handler,
 })

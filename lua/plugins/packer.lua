@@ -106,15 +106,14 @@ return require("packer").startup(function(use)
   use("petertriho/nvim-scrollbar")
   use({
     "iamcco/markdown-preview.nvim",
-    run = "cd app && npm install",
-    setup = function()
-      vim.g.mkdp_filetypes = { "markdown" }
+    run = function()
+      vim.fn["mkdp#util#install"]()
     end,
-    ft = { "markdown" },
   })
   use("onsails/lspkind.nvim")
   use("ray-x/lsp_signature.nvim")
-  -- use({ "mfussenegger/nvim-dap-python", requires = { "mfussenegger/nvim-dap" } })
+  use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+  use({ "mfussenegger/nvim-dap-python", requires = { "mfussenegger/nvim-dap" } })
   use("akinsho/bufferline.nvim")
   use({
     "nvim-telescope/telescope-file-browser.nvim",
@@ -139,4 +138,16 @@ return require("packer").startup(function(use)
     requires = { "nvim-tree/nvim-web-devicons", opt = true },
   })
   use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
+  use({
+    "kdheepak/lazygit.nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
+  })
+  use({
+    "glacambre/firenvim",
+    run = function()
+      vim.fn["firenvim#install"](0)
+    end,
+  })
 end)
