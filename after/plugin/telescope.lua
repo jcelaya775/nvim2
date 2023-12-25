@@ -32,7 +32,7 @@ telescope.setup({
   },
 })
 
-telescope.load_extension("fzf")
+-- telescope.load_extension("fzf")
 
 local project_dir = os.getenv("PWD") or io.popen("cd"):read()
 

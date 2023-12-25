@@ -121,7 +121,7 @@ return require("packer").startup(function(use)
     requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
   })
   use({ "briones-gabriel/darcula-solid.nvim", requires = "rktjmp/lush.nvim" })
-  use("kvrohit/mellow.nvim") -- color theme
+  use("mellow-theme/mellow.nvim")
   use("christoomey/vim-tmux-navigator")
   use("machakann/vim-highlightedyank")
   use("mg979/vim-visual-multi")
@@ -139,4 +139,12 @@ return require("packer").startup(function(use)
     requires = { "nvim-tree/nvim-web-devicons", opt = true },
   })
   use({ "kevinhwang91/nvim-ufo", requires = "kevinhwang91/promise-async" })
+  -- nvim v0.7.2
+  use({
+    "kdheepak/lazygit.nvim",
+    -- optional for floating window border decoration
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
+  })
 end)
