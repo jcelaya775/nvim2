@@ -156,12 +156,4 @@ return require("packer").startup(function(use)
 	use("hedyhli/outline.nvim")
 	use({ "shortcuts/no-neck-pain.nvim", tag = "*" })
 	use("rebelot/kanagawa.nvim")
-	-- use("kepano/flexoki")
-	-- use({
-	--   "olivercederborg/poimandres.nvim",
-	--   config = function()
-	--     require("poimandres").setup({})
-	--   end,
-	-- })
-	-- use("aktersnurra/no-clown-fiesta.nvim")
 end)
