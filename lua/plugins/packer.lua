@@ -150,4 +150,5 @@ return require("packer").startup(function(use)
       vim.fn["firenvim#install"](0)
     end,
   })
+  use("famiu/bufdelete.nvim")
 end)

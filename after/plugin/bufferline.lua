@@ -8,7 +8,9 @@ require("bufferline").setup({
         text_align = "left",
       },
     },
-    close_command = "Bdelete! %d",
+    close_command = function(bufnum)
+      require("bufdelete").bufdelete(bufnum, true)
+    end,
     sort_by = "relative",
   },
 })
