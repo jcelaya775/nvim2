@@ -24,7 +24,7 @@ telescope.setup({
     pickers = {
       find_files = {
         hidden = true,
-        -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+        -- `hidden = true` will still s ow the inside of `.git/` as it's not `.gitignore`d.
         find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
       },
       hidden = true,
@@ -37,62 +37,59 @@ telescope.load_extension("fzf")
 local project_dir = os.getenv("PWD") or io.popen("cd"):read()
 
 -- Files
-vim.keymap.set("n", "<leader>ff", function()
+vim.keymap.set("n", "<leader>sf", function()
   builtin.find_files({ hidden = true })
 end)
 vim.keymap.set("n", "<C-p>", builtin.git_files, {})
-vim.keymap.set("n", "<leader>fo", function()
+vim.keymap.set("n", "<leader>sh", function()
   builtin.oldfiles()
 end)
 
 -- Search
-vim.keymap.set("n", "<leader>fsw", function()
+vim.keymap.set("n", "<leader>sw", function()
   builtin.grep_string()
 end)
-vim.keymap.set("n", "<leader>fss", function()
+vim.keymap.set("n", "<leader>ss", function()
   builtin.live_grep()
 end)
-vim.keymap.set("n", "<leader>fsc", function()
+vim.keymap.set("n", "<leader>s/", function()
   local file = vim.fn.expand("%:p")
-  builtin.live_grep({ search_dirs = { file } })
+  builtin.live_grep({ search_dirs = { file }, prompt_title = "Live grep (current buffer)" })
 end)
-vim.keymap.set("n", "<leader>fsd", function()
-  builtin.live_grep({ cwd = utils.buffer_dir() })
+vim.keymap.set("n", "<leader>sd", function()
+  builtin.live_grep({ cwd = utils.buffer_dir(), prompt_title = "Live grep (current directory)" })
 end)
 -- TODO: Implement relative search (useful for large projects)
 -- Need to create function that performs relative search (searches backwards towards root)
 -- and pass in results to telescope
--- vim.keymap.set("n", "<leader>fsr", function()
+-- vim.keymap.set("n", "<leader>sr", function()
 -- 	builtin.live_grep({
 -- 		cwd = utils.buffer_dir(),
 -- 		search_dirs = { project_dir },
 -- 	})
 -- end)
-vim.keymap.set("n", "<leader>fz", function()
-  builtin.grep_string({ search = "" })
+vim.keymap.set("n", "<leader>sz", function()
+  builtin.grep_string({ search = "", prompt_title = "Fuzzy find" })
 end)
-vim.keymap.set("n", "<leader>fc", function()
-  builtin.current_buffer_fuzzy_find()
+vim.keymap.set("n", "<leader>sc", function()
+  builtin.current_buffer_fuzzy_find({ prompt_title = "Fuzzy find (current buffer)" })
 end)
-vim.keymap.set("n", "<leader>fso", function()
-  builtin.live_grep({ grep_open_files = true })
+vim.keymap.set("n", "<leader>so", function()
+  builtin.live_grep({ grep_open_files = true, prompt_title = "Live grep (open files)" })
 end)
 
 -- Symbols/References
-vim.keymap.set("n", "<leader>fws", function()
+vim.keymap.set("n", "<leader>sws", function()
   builtin.lsp_workspace_symbols()
 end)
-vim.keymap.set("n", "<leader>fds", function()
+vim.keymap.set("n", "<leader>sds", function()
   builtin.lsp_document_symbols()
 end)
-vim.keymap.set("n", "<leader>fr", function()
+vim.keymap.set("n", "<leader>sr", function()
   builtin.lsp_references()
 end)
-vim.keymap.set("n", "<leader>fd", function()
+vim.keymap.set("n", "<leader>sb", function()
   builtin.diagnostics({ bufnr = 0, severity_bound = "ERROR" })
-end)
-vim.keymap.set("n", "<leader>sh", function()
-  builtin.search_history()
 end)
 
 -- Git
