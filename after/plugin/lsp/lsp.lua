@@ -73,7 +73,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
       fallback()
     end
   end),
-  ["<C-j>"] = cmp.mapping(function()
+  ["<C-space>"] = cmp.mapping(function()
     if not cmp.visible() then
       cmp.complete()
     else
@@ -81,7 +81,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
     end
   end),
 })
-cmp_mappings["<C-y>"] = nil -- used for copilot
+cmp_mappings["<C-y>"] = nil -- use for copilot, instead
 
 lsp.setup_nvim_cmp({
   snippet = {
@@ -90,19 +90,68 @@ lsp.setup_nvim_cmp({
     end,
   },
   mapping = cmp_mappings,
+  -- NOTE: If there are lsp and luasnip *snippet* suggestions, then favor luasnip.
+  -- Else, if *only* luasnip snippets are available, then favor lsp
   sources = {
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
-    { name = "fake" },
   },
   sorting = {
     -- TODO: Implement sorting
-    -- * Favor functions w/ less params
-    -- * Lower emmet priority
+    --  - [x] Favor functions w/ less params
+    --  - [ ] Lower emmet priority
     comparators = {
+      function(entry1, entry2)
+        local file = io.open("~/.config/nvim/output.txt", "a")
+        if file ~= nil then
+          file:write("cmp-sorting entry1" .. entry1.source.name .. "\n")
+          file:write("cmp-sorting entry2" .. entry2.source.name .. "\n")
+        else
+          print("file is nil")
+        end
+
+        local is_emmet1 = entry1.source.name == "emmet"
+        local is_emmet2 = entry2.source.name == "emmet"
+
+        -- Deprioritize emmet-lsp suggestions
+        if is_emmet1 and not is_emmet2 then
+          return false
+        elseif not is_emmet1 and is_emmet2 then
+          return true
+        end
+
+        -- If neither are emmet-lsp suggestions, maintain the default order
+        return entry1:get_sort_text() < entry2:get_sort_text()
+
+        -- -- local file = io.open("output.txt", "a")
+        --
+        -- local result = vim.stricmp(entry1.completion_item.label, entry2.completion_item.label)
+        -- local source1 = entry1.source.name
+        --
+        -- -- if file ~= nil then
+        -- --   print("file is open")
+        -- --   file.write("cmp-sorting entry1" .. entry1.completion_item.label)
+        -- --   file.write("cmp-sorting entry2" .. entry2.completion_item.label)
+        -- --   file.write("cmp-sorting result" .. result)
+        -- -- else
+        -- --   print("file is nil")
+        -- -- end
+        -- -- print("cmp-sorting result" .. result)
+        -- --
+        --
+        -- if result == 0 then
+        --   return true
+        -- end
+      end,
+      cmp.locality,
+      cmp.recently_used,
+      cmp.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
+      cmp.offset,
+      cmp.order,
+      cmp.length,
       -- cmp.config.compare.offset,
       -- cmp.config.compare.exact,
       -- cmp.config.compare.score,
