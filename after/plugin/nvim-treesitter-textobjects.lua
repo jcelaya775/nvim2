@@ -114,12 +114,12 @@ require("nvim-treesitter.configs").setup({
 
 local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
 
-vim.keymap.set({ "n", "x", "o" }, "<A-0>", function()
+vim.keymap.set({ "n", "x", "o" }, "<A-)>", function()
   ts_repeat_move.repeat_last_move_next()
   vim.api.nvim_feedkeys("zz", "n", true)
 end)
 
-vim.keymap.set({ "n", "x", "o" }, "<A-9>", function()
+vim.keymap.set({ "n", "x", "o" }, "<A-(>", function()
   ts_repeat_move.repeat_last_move_previous()
   vim.api.nvim_feedkeys("zz", "n", true)
 end)
