@@ -91,6 +91,9 @@ end)
 vim.keymap.set("n", "<leader>sb", function()
   builtin.diagnostics({ bufnr = 0, severity_bound = "ERROR" })
 end)
+vim.keymap.set("n", "<leader>sk", function()
+  builtin.keymaps()
+end)
 
 -- Git
 vim.keymap.set("n", "<leader>gca", function()
