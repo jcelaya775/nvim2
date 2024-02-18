@@ -4,6 +4,11 @@ local ui = require("harpoon.ui")
 vim.keymap.set("n", "<leader>a", mark.add_file)
 vim.keymap.set("n", "<A-e>", ui.toggle_quick_menu)
 
+function Open_harpoon_file(file_index)
+  ui.nav_file(file_index)
+  vim.api.nvim_feedkeys("zz", "n", true)
+end
+
 vim.keymap.set("n", "<A-j>", function()
   ui.nav_file(1)
   vim.api.nvim_feedkeys("zz", "n", true)

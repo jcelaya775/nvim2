@@ -11,7 +11,7 @@ vim.keymap.set("n", "<C-A-o>", ":bprev<CR>")
 vim.keymap.set("n", "<C-A-i>", ":bnext<CR>")
 
 -- Close buffers
-local function close_buffer()
+local function close_current_buffer()
   local bufnr = vim.api.nvim_get_current_buf()
   vim.api.nvim_buf_delete(bufnr, { force = true })
 
@@ -22,7 +22,7 @@ local function close_buffer()
     vim.api.nvim_command("wincmd p") -- mave to previous window
   end
 end
-vim.keymap.set("n", "<leader>x", close_buffer)
+vim.keymap.set("n", "<leader>x", close_current_buffer)
 
 -- Stay in current position when joining lines
 vim.keymap.set("n", "J", "mzJ`z")
@@ -134,3 +134,14 @@ vim.keymap.set("n", "<leader>cx", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- Help menu
 vim.keymap.set("n", "<leader>h", ":vert h ")
+
+-- Reset workspace
+vim.keymap.set("n", "<leader>R", function()
+  vim.api.nvim_command("BufferLineCloseLeft")
+  vim.api.nvim_command("BufferLineCloseRight")
+  close_current_buffer()
+
+  for harpoon_file_index = 1, 8 do
+    Open_harpoon_file(harpoon_file_index)
+  end
+end)
