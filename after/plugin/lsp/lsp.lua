@@ -160,6 +160,13 @@ lsp.setup_nvim_cmp({
       -- cmp.config.compare.length,
       -- cmp.config.compare.order,
     },
+    -- confirm_opts = {
+    --   behavior = cmp.ConfirmBehavior.Replace,
+    --   select = false,
+    -- },
+    -- experimental = {
+    --   ghost_text = false,
+    -- },
   },
 })
 

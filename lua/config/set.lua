@@ -16,6 +16,7 @@ vim.opt.mouse = "a"
 
 vim.opt.wrap = false
 vim.opt.cursorline = true
+vim.opt.colorcolumn = "100"
 
 vim.opt.swapfile = false
 vim.opt.backup = false
