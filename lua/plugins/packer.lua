@@ -151,4 +151,5 @@ return require("packer").startup(function(use)
     end,
   })
   use("famiu/bufdelete.nvim")
+  use("nvim-neotest/nvim-nio")
 end)
