@@ -10,6 +10,9 @@ require("mason").setup({
       "pylint", -- python linter
       "mypy",
       "ruff",
+      "gofumpt",
+      "goimports",
+      "golangci-lint",
     },
   }),
 })
