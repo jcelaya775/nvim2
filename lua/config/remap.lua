@@ -1,7 +1,6 @@
 vim.g.mapleader = " "
 
 -- Move
-vim.keymap.set("v", "<C-A-j>", "hello")
 vim.keymap.set("v", "<C-A-k>", ":m '<-2<CR>gv=gv")
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -87,8 +86,8 @@ vim.keymap.set("n", "%", "%zz")
 vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("v", "<leader>y", '"+y')
 vim.keymap.set("x", "<leader>y", '"+y')
--- vim.keymap.set("n", "<leader>d", '"+d')
 -- vim.keymap.set("v", "<leader>d", '"+d')
+-- vim.keymap.set("n", "<leader>d", '"+d')
 -- vim.keymap.set("x", "<leader>d", '"+d')
 vim.keymap.set("n", "<leader>p", '"+p')
 vim.keymap.set("v", "<leader>p", '"+p')

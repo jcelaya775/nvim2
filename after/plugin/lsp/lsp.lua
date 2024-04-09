@@ -1,5 +1,3 @@
--- TODO: Disable emmet for text files
-
 local lsp = require("lsp-zero")
 local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -18,6 +16,7 @@ lsp.ensure_installed({
   "cssmodules_ls",
   "eslint",
   "gradle_ls",
+  "gopls",
   "groovyls",
   "html",
   "emmet_ls",
@@ -99,87 +98,103 @@ lsp.setup_nvim_cmp({
     { name = "buffer" },
     { name = "path" },
   },
-  sorting = {
-    -- TODO: Implement sorting
-    --  - [x] Favor functions w/ less params
-    --  - [ ] Lower emmet priority
-    comparators = {
-      function(entry1, entry2)
-        local file = io.open("~/.config/nvim/output.txt", "a")
-        if file ~= nil then
-          file:write("cmp-sorting entry1" .. entry1.source.name .. "\n")
-          file:write("cmp-sorting entry2" .. entry2.source.name .. "\n")
-        else
-          print("file is nil")
-        end
-
-        local is_emmet1 = entry1.source.name == "emmet"
-        local is_emmet2 = entry2.source.name == "emmet"
-
-        -- Deprioritize emmet-lsp suggestions
-        if is_emmet1 and not is_emmet2 then
-          return false
-        elseif not is_emmet1 and is_emmet2 then
-          return true
-        end
-
-        -- If neither are emmet-lsp suggestions, maintain the default order
-        return entry1:get_sort_text() < entry2:get_sort_text()
-
-        -- -- local file = io.open("output.txt", "a")
-        --
-        -- local result = vim.stricmp(entry1.completion_item.label, entry2.completion_item.label)
-        -- local source1 = entry1.source.name
-        --
-        -- -- if file ~= nil then
-        -- --   print("file is open")
-        -- --   file.write("cmp-sorting entry1" .. entry1.completion_item.label)
-        -- --   file.write("cmp-sorting entry2" .. entry2.completion_item.label)
-        -- --   file.write("cmp-sorting result" .. result)
-        -- -- else
-        -- --   print("file is nil")
-        -- -- end
-        -- -- print("cmp-sorting result" .. result)
-        -- --
-        --
-        -- if result == 0 then
-        --   return true
-        -- end
-      end,
-      cmp.locality,
-      cmp.recently_used,
-      cmp.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
-      cmp.offset,
-      cmp.order,
-      cmp.length,
-      -- cmp.config.compare.offset,
-      -- cmp.config.compare.exact,
-      -- cmp.config.compare.score,
-      -- cmp.config.compare.kind,
-      -- cmp.config.compare.sort_text,
-      -- cmp.config.compare.length,
-      -- cmp.config.compare.order,
-    },
-    -- confirm_opts = {
-    --   behavior = cmp.ConfirmBehavior.Replace,
-    --   select = false,
-    -- },
-    -- experimental = {
-    --   ghost_text = false,
-    -- },
-  },
+  -- sorting = {
+  --   -- TODO: Implement sorting
+  --   --  - [x] Favor functions w/ less params
+  --   --  - [ ] Lower emmet priority
+  --   comparators = {
+  --     function(entry1, entry2)
+  --       local file = io.open("~/.config/nvim/output.txt", "a")
+  --       if file ~= nil then
+  --         file:write("cmp-sorting entry1" .. entry1.source.name .. "\n")
+  --         file:write("cmp-sorting entry2" .. entry2.source.name .. "\n")
+  --       else
+  --         print("file is nil")
+  --       end
+  --
+  --       local is_emmet1 = entry1.source.name == "emmet"
+  --       local is_emmet2 = entry2.source.name == "emmet"
+  --
+  --       -- Deprioritize emmet-lsp suggestions
+  --       if is_emmet1 and not is_emmet2 then
+  --         return false
+  --       elseif not is_emmet1 and is_emmet2 then
+  --         return true
+  --       end
+  --
+  --       -- If neither are emmet-lsp suggestions, maintain the default order
+  --       return entry1:get_sort_text() < entry2:get_sort_text()
+  --
+  --       -- -- local file = io.open("output.txt", "a")
+  --       --
+  --       -- local result = vim.stricmp(entry1.completion_item.label, entry2.completion_item.label)
+  --       -- local source1 = entry1.source.name
+  --       --
+  --       -- -- if file ~= nil then
+  --       -- --   print("file is open")
+  --       -- --   file.write("cmp-sorting entry1" .. entry1.completion_item.label)
+  --       -- --   file.write("cmp-sorting entry2" .. entry2.completion_item.label)
+  --       -- --   file.write("cmp-sorting result" .. result)
+  --       -- -- else
+  --       -- --   print("file is nil")
+  --       -- -- end
+  --       -- -- print("cmp-sorting result" .. result)
+  --       -- --
+  --       --
+  --       -- if result == 0 then
+  --       --   return true
+  --       -- end
+  --     end,
+  --     cmp.locality,
+  --     cmp.recently_used,
+  --     cmp.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
+  --     cmp.offset,
+  --     cmp.order,
+  --     cmp.length,
+  --     -- cmp.config.compare.offset,
+  --     -- cmp.config.compare.exact,
+  --     -- cmp.config.compare.score,
+  --     -- cmp.config.compare.kind,
+  --     -- cmp.config.compare.sort_text,
+  --     -- cmp.config.compare.length,
+  --     -- cmp.config.compare.order,
+  --   },
+  --   -- confirm_opts = {
+  --   --   behavior = cmp.ConfirmBehavior.Replace,
+  --   --   select = false,
+  --   -- },
+  --   -- experimental = {
+  --   --   ghost_text = false,
+  --   -- },
+  -- },
 })
 
+function center_screen()
+  vim.cmd("normal zz")
+end
+
 local builtin = require("telescope.builtin")
-lsp.on_attach(function(client, bufnr)
+
+lsp.on_attach(vim.schedule_wrap(function(client, bufnr)
   local opts = { buffer = bufnr, remap = false }
 
   vim.keymap.set("n", "gd", function()
-    builtin.lsp_definitions()
+    local co = coroutine.create(function()
+      builtin.lsp_definitions()
+      coroutine.yield()
+      center_screen()
+      coroutine.yield()
+    end)
+    coroutine.resume(co)
+    coroutine.resume(co)
   end, opts)
   vim.keymap.set("n", "gi", function()
+    vim.defer_fn(function()
+      center_screen()
+    end, 100)
     builtin.lsp_implementations()
   end, opts)
+
   -- vim.keymap.set("n", "K", function()
   --   vim.lsp.buf.hover()
   -- end, opts)
@@ -207,7 +222,7 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("i", "<C-h>", function()
     vim.lsp.buf.signature_help()
   end, opts)
-end)
+end))
 
 lsp.setup()
 
