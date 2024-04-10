@@ -155,7 +155,7 @@ return require("packer").startup(function(use)
 	use("fatih/vim-go")
 	use("hedyhli/outline.nvim")
 	use({ "shortcuts/no-neck-pain.nvim", tag = "*" })
-	-- use("rebelot/kanagawa.nvim")
+	use("rebelot/kanagawa.nvim")
 	-- use("kepano/flexoki")
 	-- use({
 	--   "olivercederborg/poimandres.nvim",
