@@ -1,0 +1,6 @@
+-- package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
+-- package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
+--
+-- vim.opt.number = true
+-- vim.opt.conceallevel = 2
+-- -- vim.opt.signcolumn = "yes:2"

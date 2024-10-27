@@ -1,46 +1,63 @@
-require("nvim-treesitter.configs").setup({
-  ensure_installed = {
-    "bash",
-    "javascript",
-    "typescript",
-    "rust",
-    "python",
-    "c",
-    "cpp",
-    "java",
-    "lua",
-    "vim",
-    "vimdoc",
-    "query",
-  },
-
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false,
-
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = true,
-
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = true,
-  },
-  indent = {
-    enable = true,
-  },
-  autotag = {
-    enable = true,
-    enable_rename = true,
-    enable_close = true,
-    enable_close_on_slash = true,
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = ")",
-      node_incremental = ")",
-      scope_incremental = false,
-      node_decremental = "(",
-    },
-  },
-})
+-- require("nvim-treesitter.configs").setup({
+-- 	ensure_installed = {
+-- 		"bash",
+-- 		"javascript",
+-- 		"typescript",
+-- 		"rust",
+-- 		"python",
+-- 		"c",
+-- 		"cpp",
+-- 		"java",
+-- 		"lua",
+-- 		"vim",
+-- 		"vimdoc",
+-- 		"query",
+-- 	},
+--
+-- 	-- Install parsers synchronously (only applied to `ensure_installed`)
+-- 	sync_install = false,
+--
+-- 	-- Automatically install missing parsers when entering buffer
+-- 	-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+-- 	auto_install = true,
+--
+-- 	highlight = {
+-- 		enable = true,
+-- 		additional_vim_regex_highlighting = true,
+-- 	},
+-- 	indent = {
+-- 		enable = true,
+-- 	},
+-- 	-- autotag = {
+-- 	--   enable = true,
+-- 	--   enable_rename = true,
+-- 	--   enable_close = true,
+-- 	--   enable_close_on_slash = true,
+-- 	-- },
+-- 	incremental_selection = {
+-- 		enable = true,
+-- 		keymaps = {
+-- 			init_selection = ")",
+-- 			node_incremental = ")",
+-- 			scope_incremental = false,
+-- 			node_decremental = "(",
+-- 		},
+-- 	},
+-- })
+--
+-- require("nvim-ts-autotag").setup({
+-- 	opts = {
+-- 		-- Defaults
+-- 		enable_close = true, -- Auto close tags
+-- 		enable_rename = true, -- Auto rename pairs of tags
+-- 		enable_close_on_slash = false, -- Auto close on trailing </
+-- 	},
+-- 	-- Also override individual filetype configs, these take priority.
+-- 	-- Empty by default, useful if one of the "opts" global settings
+-- 	-- doesn't work well in a specific filetype
+-- 	per_filetype = {
+-- 		["html"] = {
+-- 			enable_close = false,
+-- 		},
+-- 	},
+-- })

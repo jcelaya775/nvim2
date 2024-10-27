@@ -98,16 +98,21 @@ return require("packer").startup(function(use)
 	use("panozzaj/vim-autocorrect")
 	use("zbirenbaum/copilot.lua")
 	use("unblevable/quick-scope")
-	use("ggandor/leap.nvim")
+	-- use("ggandor/leap.nvim")
+	use("folke/flash.nvim")
 	use("RRethy/vim-illuminate")
 	use("romainl/vim-cool")
 	use("Mofiqul/vscode.nvim")
 	use("projekt0n/github-nvim-theme")
 	use("petertriho/nvim-scrollbar")
 	use({
-		"iamcco/markdown-preview.nvim",
-		run = function()
-			vim.fn["mkdp#util#install"]()
+		"MeanderingProgrammer/render-markdown.nvim",
+		after = { "nvim-treesitter" },
+		requires = { "echasnovski/mini.nvim", opt = true }, -- if you use the mini.nvim suite
+		-- requires = { 'echasnovski/mini.icons', opt = true }, -- if you use standalone mini plugins
+		-- requires = { 'nvim-tree/nvim-web-devicons', opt = true }, -- if you prefer nvim-web-devicons
+		config = function()
+			require("render-markdown").setup({})
 		end,
 	})
 	use("onsails/lspkind.nvim")
@@ -156,4 +161,54 @@ return require("packer").startup(function(use)
 	use("hedyhli/outline.nvim")
 	use({ "shortcuts/no-neck-pain.nvim", tag = "*" })
 	use("rebelot/kanagawa.nvim")
+	use({ "jghauser/follow-md-links.nvim" })
+	use({
+		"MeanderingProgrammer/render-markdown.nvim",
+		after = { "nvim-treesitter" },
+		-- requires = { "echasnovski/mini.nvim", opt = true }, -- if you use the mini.nvim suite
+		-- requires = { 'echasnovski/mini.icons', opt = true }, -- if you use standalone mini plugins
+		-- requires = { 'nvim-tree/nvim-web-devicons', opt = true }, -- if you prefer nvim-web-devicons
+		config = function()
+			require("render-markdown").setup({})
+		end,
+	})
+	-- use({
+	-- 	"3rd/image.nvim",
+	-- 	config = function()
+	-- 		require("image").setup({
+	-- 			backend = "kitty",
+	-- 			integrations = {
+	-- 				markdown = {
+	-- 					enabled = true,
+	-- 					clear_in_insert_mode = false,
+	-- 					download_remote_images = true,
+	-- 					only_render_image_at_cursor = false,
+	-- 					filetypes = { "markdown", "vimwiki" }, -- markdown extensions (ie. quarto) can go here
+	-- 				},
+	-- 				neorg = {
+	-- 					enabled = true,
+	-- 					clear_in_insert_mode = false,
+	-- 					download_remote_images = true,
+	-- 					only_render_image_at_cursor = false,
+	-- 					filetypes = { "norg" },
+	-- 				},
+	-- 				html = {
+	-- 					enabled = false,
+	-- 				},
+	-- 				css = {
+	-- 					enabled = false,
+	-- 				},
+	-- 			},
+	-- 			max_width = nil,
+	-- 			max_height = nil,
+	-- 			max_width_window_percentage = nil,
+	-- 			max_height_window_percentage = 50,
+	-- 			window_overlap_clear_enabled = false, -- toggles images when windows are overlapped
+	-- 			window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
+	-- 			editor_only_render_when_focused = false, -- auto show/hide images when the editor gains/looses focus
+	-- 			tmux_show_only_in_active_window = false, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
+	-- 			hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.avif" }, -- render image files as images when opened
+	-- 		})
+	-- 	end,
+	-- })
 end)
