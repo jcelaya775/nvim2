@@ -163,6 +163,12 @@ return require("packer").startup(function(use)
 	use("rebelot/kanagawa.nvim")
 	use({ "jghauser/follow-md-links.nvim" })
 	use({
+		"iamcco/markdown-preview.nvim",
+		run = function()
+			vim.fn["mkdp#util#install"]()
+		end,
+	})
+	use({
 		"MeanderingProgrammer/render-markdown.nvim",
 		after = { "nvim-treesitter" },
 		-- requires = { "echasnovski/mini.nvim", opt = true }, -- if you use the mini.nvim suite

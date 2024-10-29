@@ -18,6 +18,8 @@ require("bufferline").setup({
 -- Cycle tabs
 vim.keymap.set("n", "<S-A-h>", "<cmd>BufferLineCyclePrev<CR>")
 vim.keymap.set("n", "<S-A-l>", "<cmd>BufferLineCycleNext<CR>")
+vim.keymap.set("n", "<M-A-h>", "<cmd>BufferLineCyclePrev<CR>")
+vim.keymap.set("n", "<M-A-l>", "<cmd>BufferLineCycleNext<CR>")
 
 -- Move tabs
 vim.keymap.set("n", "<C-A-h>", "<cmd>BufferLineMovePrev<CR>")
