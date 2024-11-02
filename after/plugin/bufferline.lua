@@ -18,8 +18,9 @@ require("bufferline").setup({
 -- Cycle tabs
 vim.keymap.set("n", "<S-A-h>", "<cmd>BufferLineCyclePrev<CR>")
 vim.keymap.set("n", "<S-A-l>", "<cmd>BufferLineCycleNext<CR>")
-vim.keymap.set("n", "<M-A-h>", "<cmd>BufferLineCyclePrev<CR>")
-vim.keymap.set("n", "<M-A-l>", "<cmd>BufferLineCycleNext<CR>")
+-- Kitty terminal (mac config)
+vim.keymap.set("n", "\\tb", "<cmd>BufferLineCyclePrev<CR>")
+vim.keymap.set("n", "\\tff", "<cmd>BufferLineCycleNext<CR>")
 
 -- Move tabs
 vim.keymap.set("n", "<C-A-h>", "<cmd>BufferLineMovePrev<CR>")
@@ -39,3 +40,13 @@ set_keymap("n", "<leader>7", "<CMD>lua require'bufferline'.go_to_buffer(7)<CR>",
 set_keymap("n", "<leader>8", "<CMD>lua require'bufferline'.go_to_buffer(8)<CR>", {})
 set_keymap("n", "<leader>9", "<CMD>lua require'bufferline'.go_to_buffer(9)<CR>", {})
 set_keymap("n", "<leader>0", "<CMD>lua require'bufferline'.go_to_buffer(10)<CR>", {})
+-- Mac
+set_keymap("n", "\\t1", "<CMD>lua require'bufferline'.go_to_buffer(1)<CR>", {})
+set_keymap("n", "\\t2", "<CMD>lua require'bufferline'.go_to_buffer(2)<CR>", {})
+set_keymap("n", "\\t3", "<CMD>lua require'bufferline'.go_to_buffer(3)<CR>", {})
+set_keymap("n", "\\t4", "<CMD>lua require'bufferline'.go_to_buffer(4)<CR>", {})
+set_keymap("n", "\\t5", "<CMD>lua require'bufferline'.go_to_buffer(5)<CR>", {})
+set_keymap("n", "\\t6", "<CMD>lua require'bufferline'.go_to_buffer(6)<CR>", {})
+set_keymap("n", "\\t7", "<CMD>lua require'bufferline'.go_to_buffer(7)<CR>", {})
+set_keymap("n", "\\t8", "<CMD>lua require'bufferline'.go_to_buffer(8)<CR>", {})
+set_keymap("n", "\\t9", "<CMD>lua require'bufferline'.go_to_buffer(9)<CR>", {})
