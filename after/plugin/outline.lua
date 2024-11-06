@@ -5,4 +5,4 @@ require("outline").setup({
 	},
 })
 
-vim.keymap.set("n", "<leader>sy", "<cmd>Outline<cr>")
+vim.keymap.set("n", "<leader>o", "<cmd>Outline<cr>")
