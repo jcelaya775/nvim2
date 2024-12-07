@@ -1,9 +1,9 @@
 require("Bullets").setup({
-	checkbox = {
-		nest = true,
-		markers = " x",
-		toggle_partials = true,
-	},
+  checkbox = {
+    nest = true,
+    markers = " x",
+    toggle_partials = true,
+  },
 })
 
 -- TODO: Remove <Space> leader mapping and add <CR> shortcut to toggle checkbox
@@ -13,6 +13,6 @@ require("Bullets").setup({
 -- -- vim.g.bullets_mapping_leader = "|"
 --
 -- vim.keymap.set("n", "<CR>", "<Plug>(bullets-toggle-checkbox)")
--- -- vim.g.bullets_custom_mappings = {
--- -- 	{ "nmap", "<CR>", "<Plug>(bullets-toggle-checkbox)" },
--- -- }
+vim.g.bullets_custom_mappings = {
+  { "nmap", "<CR>", "<Plug>(bullets-toggle-checkbox)" },
+}

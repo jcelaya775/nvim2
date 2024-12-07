@@ -1,18 +1,18 @@
 vim.opt.termguicolors = true
 require("bufferline").setup({
-	options = {
-		offsets = {
-			{
-				filetype = "NvimTree",
-				separator = true,
-				text_align = "left",
-			},
-		},
-		close_command = function(bufnum)
-			require("bufdelete").bufdelete(bufnum, true)
-		end,
-		sort_by = "relative",
-	},
+  options = {
+    offsets = {
+      {
+        filetype = "NvimTree",
+        separator = true,
+        text_align = "left",
+      },
+    },
+    close_command = function(bufnum)
+      require("bufdelete").bufdelete(bufnum, true)
+    end,
+    sort_by = "relative",
+  },
 })
 
 -- Cycle tabs
