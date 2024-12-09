@@ -1,8 +1,8 @@
 require("no-neck-pain").setup({
-	width = 150,
-	autocmds = {
-		enableOnVimEnter = true,
-	},
+  width = 150,
+  autocmds = {
+    enableOnVimEnter = true,
+  },
 })
 
 vim.keymap.set("n", "<leader>ce", "<cmd>NoNeckPain<CR>")
