@@ -10,16 +10,17 @@ vim.keymap.set("n", "<C-A-i>", ":bnext<CR>")
 
 -- Close buffers
 function Close_current_buffer()
-	local bufnr = vim.api.nvim_get_current_buf()
-	vim.api.nvim_buf_delete(bufnr, { force = true })
+  local bufnr = vim.api.nvim_get_current_buf()
+  vim.api.nvim_buf_delete(bufnr, { force = true })
 
-	local tree = require("nvim-tree.api").tree
-	if tree.is_visible() then
-		vim.api.nvim_command("NvimTreeClose")
-		vim.api.nvim_command("NvimTreeOpen")
-		vim.api.nvim_command("wincmd p") -- mave to previous window
-	end
+  local tree = require("nvim-tree.api").tree
+  if tree.is_visible() then
+    vim.api.nvim_command("NvimTreeClose")
+    vim.api.nvim_command("NvimTreeOpen")
+    vim.api.nvim_command("wincmd p") -- mave to previous window
+  end
 end
+
 vim.keymap.set("n", "<leader>x", Close_current_buffer)
 vim.keymap.set("n", "<leader>q", Close_current_buffer)
 
@@ -38,6 +39,7 @@ vim.keymap.set("n", "<A-BS>", "db")
 vim.keymap.set("i", "<A-BS>", "<C-w>")
 vim.keymap.set("n", "<C-del>", "dw")
 vim.keymap.set("i", "<C-del>", "<Esc>ldwi")
+vim.keymap.set({ "n", "i" }, "<M-del>", "<Esc>ldwi")
 vim.keymap.set("n", "<BS>", "dh")
 
 -- Save
@@ -126,11 +128,11 @@ vim.keymap.set("n", "<leader>h", ":vert h ")
 
 -- Reset workspace
 vim.keymap.set("n", "<leader>R", function()
-	vim.api.nvim_command("BufferLineCloseLeft")
-	vim.api.nvim_command("BufferLineCloseRight")
-	Close_current_buffer()
+  vim.api.nvim_command("BufferLineCloseLeft")
+  vim.api.nvim_command("BufferLineCloseRight")
+  Close_current_buffer()
 
-	for harpoon_file_index = 1, 8 do
-		Open_harpoon_file(harpoon_file_index)
-	end
+  for harpoon_file_index = 1, 8 do
+    Open_harpoon_file(harpoon_file_index)
+  end
 end)
