@@ -51,6 +51,10 @@ vim.keymap.set({ "n", "v", "x", "i" }, "<C-A-s>", "<cmd>wa!<CR>")
 vim.keymap.set("n", "<C-a>", "ggVG")
 vim.keymap.set("n", "<M-a>", "ggVG")
 
+-- Remap <C-a>
+vim.keymap.set({ "n", "v", "x" }, "<A-a>", "<C-a>")
+vim.keymap.set({ "n", "v", "x" }, "<A-x>", "<C-x>")
+
 -- Center
 vim.keymap.set("n", "<C-o>", "<C-o>zz")
 vim.keymap.set("n", "<C-i>", "<C-i>zz")
@@ -80,18 +84,10 @@ vim.keymap.set("n", "#", "#zz")
 vim.keymap.set("n", "%", "%zz")
 
 -- Yank to system clipboard
-vim.keymap.set("n", "<leader>y", '"+y')
-vim.keymap.set("v", "<leader>y", '"+y')
-vim.keymap.set("x", "<leader>y", '"+y')
--- vim.keymap.set("v", "<leader>d", '"+d')
--- vim.keymap.set("n", "<leader>d", '"+d')
--- vim.keymap.set("x", "<leader>d", '"+d')
-vim.keymap.set("n", "<leader>p", '"+p')
-vim.keymap.set("v", "<leader>p", '"+p')
-vim.keymap.set("x", "<leader>p", '"+p')
-vim.keymap.set("n", "<leader>P", '"+P')
-vim.keymap.set("v", "<leader>P", '"+P')
-vim.keymap.set("x", "<leader>P", '"+P')
+vim.keymap.set({ "n", "v", "x" }, "<leader>y", '"+y')
+vim.keymap.set({ "n", "v", "x" }, "<leader>d", '"+d')
+vim.keymap.set({ "n", "v", "x" }, "<leader>p", '"+p')
+vim.keymap.set({ "n", "v", "x" }, "<leader>P", '"+P')
 
 -- Escape
 vim.keymap.set("n", "<C-c>", "<Esc>")
@@ -99,9 +95,6 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("v", "<C-c>", "<Esc>")
 vim.keymap.set("c", "<C-c>", "<Esc>")
 vim.keymap.set("s", "<C-c>", "<Esc>")
-
--- ??
-vim.keymap.set("n", "Q", "<Nop>")
 
 -- Undo
 vim.keymap.set({ "n", "v", "x", "i" }, "", vim.cmd.u)

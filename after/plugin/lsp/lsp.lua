@@ -35,7 +35,7 @@ lsp.ensure_installed({
 lspconfig.pyright.setup({
   settings = {
     python = {
-      pythonPath = "/opt/anaconda3/bin/python",
+      pythonPath = "/home/jorge/anaconda3/bin/python",
     },
   },
 })
@@ -221,7 +221,7 @@ lsp.on_attach(vim.schedule_wrap(function(client, bufnr)
   vim.keymap.set("n", "<leader>ws", function()
     vim.lsp.buf.workspace_symbol()
   end, opts)
-  vim.keymap.set("n", "<leader>d", function()
+  vim.keymap.set("n", "<leader>di", function()
     vim.diagnostic.open_float()
   end, opts)
   vim.keymap.set("n", "[d", function()
