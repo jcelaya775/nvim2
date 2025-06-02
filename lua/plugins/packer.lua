@@ -27,7 +27,11 @@ return require("packer").startup(function(use)
   use("tpope/vim-rhubarb")
   use("nvim-lua/plenary.nvim")
   use("simeji/winresizer")
-  use("ThePrimeagen/harpoon")
+  use {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    requires = { { "nvim-lua/plenary.nvim" } }
+  }
   -- use 'romgrk/barbar.nvim'
   use("terrortylor/nvim-comment")
   use({
