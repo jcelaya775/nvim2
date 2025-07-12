@@ -35,7 +35,7 @@ lsp.ensure_installed({
 lspconfig.pyright.setup({
   settings = {
     python = {
-      pythonPath = "/home/jorge/anaconda3/bin/python",
+      pythonPath = "/opt/anaconda3/bin/python",
     },
   },
 })
