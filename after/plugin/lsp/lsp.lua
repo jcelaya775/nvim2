@@ -189,7 +189,7 @@ lsp.setup_nvim_cmp({
   -- },
 })
 
-function center_screen()
+function Center_screen()
   vim.cmd("normal zz")
 end
 
@@ -202,7 +202,7 @@ lsp.on_attach(vim.schedule_wrap(function(client, bufnr)
     local co = coroutine.create(function()
       builtin.lsp_definitions()
       coroutine.yield()
-      center_screen()
+      Center_screen()
       coroutine.yield()
     end)
     coroutine.resume(co)
@@ -210,7 +210,7 @@ lsp.on_attach(vim.schedule_wrap(function(client, bufnr)
   end, opts)
   vim.keymap.set("n", "gi", function()
     vim.defer_fn(function()
-      center_screen()
+      Center_screen()
     end, 100)
     builtin.lsp_implementations()
   end, opts)
