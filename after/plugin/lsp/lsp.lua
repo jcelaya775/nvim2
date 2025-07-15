@@ -51,7 +51,7 @@ lspconfig.pyright.setup({
 --     },
 --   }
 -- end
-lspconfig.fish_lsp.setup({})
+-- lspconfig.fish_lsp.setup({})
 
 -- Fix Undefined global 'vim'
 lsp.nvim_workspace()
